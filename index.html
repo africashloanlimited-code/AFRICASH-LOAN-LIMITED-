@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFRICASH LOAN LIMITED | Africa's Trusted Lender</title>
+    <title>AFRICASH LOAN LIMITED | Secure African Lending</title>
     <style>
         :root {
             --primary-navy: #1a2a3a;
@@ -37,74 +37,58 @@
             font-weight: 800;
         }
 
-        .user-actions {
-            max-width: 1100px;
-            margin: 20px auto 0;
-            display: flex;
-            gap: 15px;
-            padding: 0 15px;
-            flex-wrap: wrap;
-        }
-        .action-btn {
-            background: var(--primary-navy);
-            color: var(--white);
-            padding: 12px 20px;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 6px;
-            flex: 1;
-            min-width: 150px;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .action-btn:hover { background: #2c3e50; transform: translateY(-2px); }
-
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 20px auto 60px;
             padding: 0 15px;
         }
 
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
+        /* PAGE STATES */
+        #disbursementPage, #paymentPage { display: none; }
 
-        .stat-card {
-            background: var(--white);
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--accent-green);
-        }
-
-        .gate-container {
+        .card {
             background: var(--white);
             padding: 40px;
             border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 2px dashed #ddd;
         }
 
-        .gate-locked #mainForm { display: none; }
-        .gate-unlocked #docGate { display: none; }
-
-        #mainForm {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        /* PROGRESS BAR */
+        .progress-container {
+            width: 100%;
+            background: #eee;
+            height: 15px;
+            border-radius: 10px;
+            margin: 30px 0;
+            overflow: hidden;
         }
-        .form-group { margin-bottom: 20px; }
+        .progress-bar {
+            width: 75%;
+            height: 100%;
+            background: var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+
+        /* BUTTONS */
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-primary { background: var(--primary-navy); color: white; }
+        .btn-pay { background: var(--accent-green); color: white; font-size: 18px; }
+
+        /* FORM ELEMENTS */
+        .form-group { margin-bottom: 20px; text-align: left; }
         label { font-weight: 700; display: block; margin-bottom: 8px; }
         input, select {
             width: 100%;
@@ -112,24 +96,7 @@
             border-radius: 8px;
             border: 1px solid #ddd;
             box-sizing: border-box;
-            font-size: 15px;
         }
-
-        .btn-submit {
-            width: 100%;
-            padding: 16px;
-            margin-top: 10px;
-            border-radius: 8px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-        .btn-whatsapp { background: #25D366; color: white; margin-top: 15px; }
-        .btn-calc { background: #f39c12; color: white; margin-top: 15px; }
-        .btn-email { background: var(--accent-green); color: white; }
-        .btn-gate { background: var(--primary-navy); color: white; margin-top: 20px; width: auto; padding: 12px 40px; }
 
         /* NOTIFICATION POPUP */
         #notification {
@@ -143,175 +110,10 @@
             border-left: 5px solid var(--accent-green);
             display: none;
             z-index: 3000;
-            animation: slideIn 0.5s ease-out;
-            max-width: 300px;
         }
-        @keyframes slideIn { from { transform: translateX(-110%); } to { transform: translateX(0); } }
 
-        /* MODALS */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
-        .modal-content { background: var(--white); margin: 10% auto; padding: 30px; width: 90%; max-width: 500px; border-radius: 15px; position: relative; }
-        .close { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; }
+        /* GATE LOGIC */
+        .gate-locked #mainForm { display: none; }
+        .gate-unlocked #docGate { display: none; }
 
-        footer { background: var(--primary-navy); color: var(--white); padding: 50px 20px; text-align: center; }
-        #calcResult { margin-top: 20px; padding: 15px; background: #f0fdf4; border-radius: 8px; border: 1px solid var(--accent-green); display: none; }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>AFRICASH LOAN LIMITED</h1>
-</header>
-
-<div class="user-actions">
-    <button class="action-btn" onclick="toggleModal('dashboardModal')">👤 Access Dashboard</button>
-    <button class="action-btn" onclick="toggleModal('howItWorksModal')">📋 How It Works</button>
-    <button class="action-btn" onclick="toggleModal('supportModal')">🎧 Support Center</button>
-</div>
-
-<div class="container">
-    
-    <div class="dashboard-grid">
-        <div class="stat-card"><h3>⚡ Speed</h3><p>24hr Verification</p></div>
-        <div class="stat-card"><h3>📅 Payouts</h3><p>Same-Day Disbursement</p></div>
-        <div class="stat-card"><h3>🌍 Coverage</h3><p>All 54 African Nations</p></div>
-        <div class="stat-card"><h3>📉 Rates</h3><p>From 3% Interest</p></div>
-    </div>
-
-    <div id="applicationWrapper" class="gate-locked">
-        
-        <div id="docGate" class="gate-container">
-            <h2>Step 1: Document Submission</h2>
-            <p>Documents are accepted via email only for high-security processing.</p>
-            <p>Send your <strong>ID, Selfie, & Bank Statement</strong> to:<br>
-            <a href="mailto:africashloanlimited@gmail.com" style="color: var(--accent-green); font-weight: bold;">africashloanlimited@gmail.com</a></p>
-            <label style="display: flex; justify-content: center; align-items: center; cursor: pointer; margin-top: 20px;">
-                <input type="checkbox" id="confirmDocs" style="width: auto; margin-right: 10px;">
-                I have already emailed my documents.
-            </label>
-            <button class="btn-submit btn-gate" onclick="unlockApplication()">Proceed to Application</button>
-        </div>
-
-        <form id="mainForm">
-            <h2 style="margin-top: 0; text-align: center;">Official Loan Form</h2>
-            
-            <div class="form-group">
-                <label>Country</label>
-                <select id="country" required>
-                    <option value="">Select your country</option>
-                    <option>🇩🇿 Algeria</option><option>🇦🇴 Angola</option><option>🇧🇯 Benin</option><option>🇧🇼 Botswana</option><option>🇧🇫 Burkina Faso</option><option>🇧🇮 Burundi</option><option>🇨🇲 Cameroon</option><option>🇨🇻 Cape Verde</option><option>🇨🇫 Central African Rep</option><option>🇹🇩 Chad</option><option>🇰🇲 Comoros</option><option>🇨🇬 Congo</option><option>🇨🇩 DR Congo</option><option>🇩🇯 Djibouti</option><option>🇪🇬 Egypt</option><option>🇬🇶 Equatorial Guinea</option><option>🇪🇷 Eritrea</option><option>🇸🇿 Eswatini</option><option>🇪🇹 Ethiopia</option><option>🇬🇦 Gabon</option><option>🇬🇲 Gambia</option><option>🇬🇭 Ghana</option><option>🇬🇳 Guinea</option><option>🇬🇼 Guinea-Bissau</option><option>🇨🇮 Ivory Coast</option><option>🇰🇪 Kenya</option><option>🇱🇸 Lesotho</option><option>🇱🇷 Liberia</option><option>🇱🇾 Libya</option><option>🇲🇬 Madagascar</option><option>🇲🇼 Malawi</option><option>🇲🇱 Mali</option><option>🇲🇷 Mauritania</option><option>🇲🇺 Mauritius</option><option>🇲🇦 Morocco</option><option>🇲🇿 Mozambique</option><option>🇳🇦 Namibia</option><option>🇳🇪 Niger</option><option>🇳🇬 Nigeria</option><option>🇷🇼 Rwanda</option><option>🇸🇹 Sao Tome</option><option>🇸🇳 Senegal</option><option>🇸🇨 Seychelles</option><option>🇸🇱 Sierra Leone</option><option>🇸🇴 Somalia</option><option>🇿🇦 South Africa</option><option>🇸🇸 South Sudan</option><option>🇸🇩 Sudan</option><option>🇹🇿 Tanzania</option><option>🇹🇬 Togo</option><option>🇹🇳 Tunisia</option><option>🇺🇬 Uganda</option><option>🇿🇲 Zambia</option><option>🇿🇼 Zimbabwe</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="fullName" placeholder="Enter name as per ID" required>
-            </div>
-
-            <div class="form-group">
-                <label>Loan Amount</label>
-                <input type="number" id="loanAmount" placeholder="Amount" required oninput="hideCalc()">
-            </div>
-
-            <div class="form-group">
-                <label>Repayment Schedule</label>
-                <select id="repaymentType" onchange="toggleDurationFields()" required>
-                    <option value="monthly">Monthly Plan (3% Interest)</option>
-                    <option value="yearly">Yearly Plan (9% Interest)</option>
-                </select>
-            </div>
-
-            <div class="form-group" id="monthBox">
-                <label>Duration (Number of Months)</label>
-                <input type="number" id="numMonths" placeholder="e.g. 6" min="1" max="60" oninput="hideCalc()">
-            </div>
-
-            <div class="form-group" id="yearBox" style="display:none;">
-                <label>Duration (Number of Years)</label>
-                <input type="number" id="numYears" placeholder="e.g. 2" min="1" max="10" oninput="hideCalc()">
-            </div>
-
-            <div class="form-group">
-                <label>WhatsApp Number</label>
-                <input type="text" id="whatsapp" placeholder="+254..." required>
-            </div>
-
-            <div id="calcResult"></div>
-
-            <button type="button" class="btn-submit btn-calc" onclick="calculateRepayment()">View Installments & Repayment</button>
-            <button type="button" class="btn-submit btn-email" onclick="submitViaEmail()">Confirm & Submit Application</button>
-            <button type="button" class="btn-submit btn-whatsapp" onclick="submitViaWhatsApp()">Inquire via WhatsApp</button>
-        </form>
-    </div>
-</div>
-
-<div id="notification"></div>
-
-<div id="howItWorksModal" class="modal"><div class="modal-content"><span class="close" onclick="toggleModal('howItWorksModal')">&times;</span><h2>How It Works</h2><p>1. Email docs to us.<br>2. Confirm & fill application.<br>3. Instant verification.<br>4. Funds received.</p></div></div>
-<div id="dashboardModal" class="modal"><div class="modal-content"><span class="close" onclick="toggleModal('dashboardModal')">&times;</span><h2>Manager Dashboard</h2><p>Manager: <strong>SYLVIA UKIRU</strong><br>Contact: +254 100 820 805</p></div></div>
-<div id="supportModal" class="modal"><div class="modal-content"><span class="close" onclick="toggleModal('supportModal')">&times;</span><h2>Support</h2><textarea id="supportIssue" rows="3" style="width:100%"></textarea><button onclick="submitSupport()">Send Email</button></div></div>
-
-<footer>
-    <h3>AFRICASH LOAN LIMITED</h3>
-    <p>Email: africashloanlimited@gmail.com</p>
-    <div class="copyright">© 2026 AFRICASH LOAN LIMITED</div>
-</footer>
-
-<script>
-    const notifications = [
-        { name: "John K.", country: "Kenya", amount: "KSh 45,000" },
-        { name: "Amara O.", country: "Nigeria", amount: "₦ 120,000" },
-        { name: "Samuel T.", country: "South Africa", amount: "R 8,500" },
-        { name: "Kofi B.", country: "Ghana", amount: "₵ 3,200" },
-        { name: "Fatima Z.", country: "Egypt", amount: "E£ 15,000" },
-        { name: "Paul M.", country: "Uganda", amount: "USh 900,000" },
-        { name: "Sarah L.", country: "Zambia", amount: "ZK 4,000" }
-    ];
-
-    function showRandomNotification() {
-        const item = notifications[Math.floor(Math.random() * notifications.length)];
-        const el = document.getElementById('notification');
-        el.innerHTML = `<strong>${item.name}</strong> from <strong>${item.country}</strong> just received <strong>${item.amount}</strong> funds.`;
-        el.style.display = 'block';
-        setTimeout(() => { el.style.display = 'none'; }, 5000);
-    }
-    setInterval(showRandomNotification, 12000);
-
-    function toggleModal(id) { document.getElementById(id).style.display = (document.getElementById(id).style.display === "block") ? "none" : "block"; }
-    function toggleDurationFields() {
-        const type = document.getElementById('repaymentType').value;
-        document.getElementById('monthBox').style.display = type === 'monthly' ? 'block' : 'none';
-        document.getElementById('yearBox').style.display = type === 'yearly' ? 'block' : 'none';
-        hideCalc();
-    }
-    function hideCalc() { document.getElementById('calcResult').style.display = 'none'; }
-    function unlockApplication() {
-        if(!document.getElementById('confirmDocs').checked) { alert("Please email documents first."); return; }
-        document.getElementById('applicationWrapper').className = "gate-unlocked";
-    }
-
-    function calculateRepayment() {
-        const amount = parseFloat(document.getElementById('loanAmount').value);
-        const type = document.getElementById('repaymentType').value;
-        if(!amount) return;
-        let dur = (type === 'monthly') ? parseInt(document.getElementById('numMonths').value || 1) : parseInt(document.getElementById('numYears').value || 1);
-        let rate = (type === 'monthly') ? 0.03 : 0.09;
-        let total = amount + (amount * rate * dur);
-        let installment = total / (type === 'monthly' ? dur : dur * 12);
-        
-        document.getElementById('calcResult').innerHTML = `<strong>Total to Repay:</strong> ${total.toLocaleString()}<br><strong>Installment:</strong> ${installment.toLocaleString()} /month`;
-        document.getElementById('calcResult').style.display = 'block';
-    }
-
-    function submitViaEmail() {
-        const name = document.getElementById('fullName').value;
-        window.location.href = `mailto:africashloanlimited@gmail.com?subject=Application&body=Name: ${name}`;
-    }
-
-    function submitViaWhatsApp() {
-        const name = document.getElementById('fullName').value;
-        window.open(`https://wa.me/254101965027?text=Hello Africash, I am ${name}.`, '_blank');
-    }
-</script>
-</body>
-</html>
+        .
