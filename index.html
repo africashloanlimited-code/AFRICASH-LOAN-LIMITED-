@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Africash Loan Limited</title>
+<style>
+body { font-family: Arial, sans-serif; background: #f5f5f5; margin:0; padding:0; }
+header { text-align:center; padding:20px; font-size:36px; font-weight:bold; color:#2c3e50; font-family:'Segoe UI', sans-serif; letter-spacing:2px; }
+.container { max-width:900px; margin:auto; padding:20px; background:white; box-shadow:0 0 10px rgba(0,0,0,0.1); border-radius:8px; }
+label { display:block; margin-top:15px; font-weight:bold; }
+select, input { width:100%; padding:10px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
+button { background:#27ae60; color:white; padding:15px; border:none; border-radius:5px; cursor:pointer; margin-top:20px; width:100%; font-size:16px; }
+button:disabled { background:#ccc; cursor:not-allowed; }
+.popup { margin-top:20px; background:#ecf0f1; padding:10px; border-radius:5px; height:200px; overflow-y:auto; font-size:14px; }
+.popup div { margin-bottom:5px; }
+.processing { display:none; text-align:center; margin-top:20px; font-weight:bold; color:#e67e22; }
+</style>
+</head>
+<body>
+
+<header>✨ Africash Loan Limited ✨</header>
+
+<div class="container">
+
+<p>Before applying, please send your identity documents to: <a href="mailto:africashloanlimited@gmail.com">africashloanlimited@gmail.com</a></p>
+
+<label>
+  <input type="checkbox" id="confirmDocs"> I have sent my documents
+</label>
+
+<label for="countrySelect">Select your country:</label>
+<select id="countrySelect" disabled>
+  <option value="">Select your country</option>
+  <!-- African Countries (55) -->
+  <option value="DZ" data-code="+213" data-currency="DZD" data-flag="🇩🇿">Algeria</option>
+  <option value="AO" data-code="+244" data-currency="AOA" data-flag="🇦🇴">Angola</option>
+  <option value="BJ" data-code="+229" data-currency="XOF" data-flag="🇧🇯">Benin</option>
+  <option value="BW" data-code="+267" data-currency="BWP" data-flag="🇧🇼">Botswana</option>
+  <option value="BF" data-code="+226" data-currency="XOF" data-flag="🇧🇫">Burkina Faso</option>
+  <option value="BI" data-code="+257" data-currency="BIF" data-flag="🇧🇮">Burundi</option>
+  <option value="CM" data-code="+237" data-currency="XAF" data-flag="🇨🇲">Cameroon</option>
+  <option value="CV" data-code="+238" data-currency="CVE" data-flag="🇨🇻">Cape Verde</option>
+  <option value="CF" data-code="+236" data-currency="XAF" data-flag="🇨🇫">Central African Republic</option>
+  <option value="TD" data-code="+235" data-currency="XAF" data-flag="🇹🇩">Chad</option>
+  <option value="KM" data-code="+269" data-currency="KMF" data-flag="🇰🇲">Comoros</option>
+  <option value="CD" data-code="+243" data-currency="CDF" data-flag="🇨🇩">Congo (DRC)</option>
+  <option value="CG" data-code="+242" data-currency="XAF" data-flag="🇨🇬">Congo (Republic)</option>
+  <option value="CI" data-code="+225" data-currency="XOF" data-flag="🇨🇮">Côte d'Ivoire</option>
+  <option value="DJ" data-code="+253" data-currency="DJF" data-flag="🇩🇯">Djibouti</option>
+  <option value="EG" data-code="+20" data-currency="EGP" data-flag="🇪🇬">Egypt</option>
+  <option value="GQ" data-code="+240" data-currency="XAF" data-flag="🇬🇶">Equatorial Guinea</option>
+  <option value="ER" data-code="+291" data-currency="ERN" data-flag="🇪🇷">Eritrea</option>
+  <option value="SZ" data-code="+268" data-currency="SZL" data-flag="🇸🇿">Eswatini</option>
+  <option value="ET" data-code="+251" data-currency="ETB" data-flag="🇪🇹">Ethiopia</option>
+  <option value="GA" data-code="+241" data-currency="XAF" data-flag="🇬🇦">Gabon</option>
+  <option value="GM" data-code="+220" data-currency="GMD" data-flag="🇬🇲">Gambia</option>
+  <option value="GH" data-code="+233" data-currency="GHS" data-flag="🇬🇭">Ghana</option>
+  <option value="GN" data-code="+224" data-currency="GNF" data-flag="🇬🇳">Guinea</option>
+  <option value="GW" data-code="+245" data-currency="XOF" data-flag="🇬🇼">Guinea-Bissau</option>
+  <option value="KE" data-code="+254" data-currency="KES" data-flag="🇰🇪">Kenya</option>
+  <option value="LS" data-code="+266" data-currency="LSL" data-flag="🇱🇸">Lesotho</option>
+  <option value="LR" data-code="+231" data-currency="LRD" data-flag="🇱🇷">Liberia</option>
+  <option value="LY" data-code="+218" data-currency="LYD" data-flag="🇱🇾">Libya</option>
+  <option value="MG" data-code="+261" data-currency="MGA" data-flag="🇲🇬">Madagascar</option>
+  <option value="MW" data-code="+265" data-currency="MWK" data-flag="🇲🇼">Malawi</option>
+  <option value="ML" data-code="+223" data-currency="XOF" data-flag="🇲🇱">Mali</option>
+  <option value="MR" data-code="+222" data-currency="MRU" data-flag="🇲🇷">Mauritania</option>
+  <option value="MU" data-code="+230" data-currency="MUR" data-flag="🇲🇺">Mauritius</option>
+  <option value="MA" data-code="+212" data-currency="MAD" data-flag="🇲🇦">Morocco</option>
+  <option value="MZ" data-code="+258" data-currency="MZN" data-flag="🇲🇿">Mozambique</option>
+  <option value="NA" data-code="+264" data-currency="NAD" data-flag="🇳🇦">Namibia</option>
+  <option value="NE" data-code="+227" data-currency="XOF" data-flag="🇳🇪">Niger</option>
+  <option value="NG" data-code="+234" data-currency="NGN" data-flag="🇳🇬">Nigeria</option>
+  <option value="RW" data-code="+250" data-currency="RWF" data-flag="🇷🇼">Rwanda</option>
+  <option value="ST" data-code="+239" data-currency="STN" data-flag="🇸🇹">Sao Tome & Principe</option>
+  <option value="SN" data-code="+221" data-currency="XOF" data-flag="🇸🇳">Senegal</option>
+  <option value="SC" data-code="+248" data-currency="SCR" data-flag="🇸🇨">Seychelles</option>
+  <option value="SL" data-code="+232" data-currency="SLL" data-flag="🇸🇱">Sierra Leone</option>
+  <option value="SO" data-code="+252" data-currency="SOS" data-flag="🇸🇴">Somalia</option>
+  <option value="ZA" data-code="+27" data-currency="ZAR" data-flag="🇿🇦">South Africa</option>
+  <option value="SS" data-code="+211" data-currency="SSP" data-flag="🇸🇸">South Sudan</option>
+  <option value="SD" data-code="+249" data-currency="SDG" data-flag="🇸🇩">Sudan</option>
+  <option value="TZ" data-code="+255" data-currency="TZS" data-flag="🇹🇿">Tanzania</option>
+  <option value="TG" data-code="+228" data-currency="XOF" data-flag="🇹🇬">Togo</option>
+  <option value="TN" data-code="+216" data-currency="TND" data-flag="🇹🇳">Tunisia</option>
+  <option value="UG" data-code="+256" data-currency="UGX" data-flag="🇺🇬">Uganda</option>
+  <option value="ZM" data-code="+260" data-currency="ZMW" data-flag="🇿🇲">Zambia</option>
+  <option value="ZW" data-code="+263" data-currency="ZWL" data-flag="🇿🇼">Zimbabwe</option>
+
+  <!-- International (10) -->
+  <option value="US" data-code="+1" data-currency="USD" data-flag="🇺🇸">United States</option>
+  <option value="GB" data-code="+44" data-currency="GBP" data-flag="🇬🇧">United Kingdom</option>
+  <option value="CA" data-code="+1" data-currency="CAD" data-flag="🇨🇦">Canada</option>
+  <option value="AU" data-code="+61" data-currency="AUD" data-flag="🇦🇺">Australia</option>
+  <option value="DE" data-code="+49" data-currency="EUR" data-flag="🇩🇪">Germany</option>
+  <option value="FR" data-code="+33" data-currency="EUR" data-flag="🇫🇷">France</option>
+  <option value="JP" data-code="+81" data-currency="JPY" data-flag="🇯🇵">Japan</option>
+  <option value="CN" data-code="+86" data-currency="CNY" data-flag="🇨🇳">China</option>
+  <option value="IN" data-code="+91" data-currency="INR" data-flag="🇮🇳">India</option>
+  <option value="QA" data-code="+974" data-currency="QAR" data-flag="🇶🇦">Qatar</option>
+</select>
+
+<label for="amount">Loan Amount:</label>
+<input type="number" id="amount" placeholder="Enter loan amount" min="1000">
+
+<label for="duration">Loan Duration:</label>
+<select id="duration">
+  <option value="30" data-interest="15">30 days - 15% interest</option>
+  <option value="60" data-interest="19">60 days - 19% interest</option>
+  <option value="90" data-interest="25">90 days - 25% interest</option>
+</select>
+
+<label for="whatsapp">WhatsApp Number:</label>
+<input type="text" id="whatsapp" placeholder="Enter WhatsApp number">
+
+<button id="applyBtn" disabled>Apply via WhatsApp</button>
+
+<div class="processing" id="processing">Processing, please wait...</div>
+
+<div class="popup" id="popup"></div>
+
+</div>
+
+<script>
+const confirmDocs = document.getElementById('confirmDocs');
+const applyBtn = document.getElementById('applyBtn');
+const processing = document.getElementById('processing');
+const popup = document.getElementById('popup');
+const countrySelect = document.getElementById('countrySelect');
+const duration = document.getElementById('duration');
+const amount = document.getElementById('amount');
+const whatsapp = document.getElementById('whatsapp');
+
+confirmDocs.addEventListener('change', () => {
+  countrySelect.disabled = !confirmDocs.checked;
+  applyBtn.disabled = !confirmDocs.checked;
+});
+
+// Random popping names (example, you can add up to 50)
+const namesList = [
+  {name:'Mohamed K.', country:'TZ', amount:300000, code:'+255'},
+  {name:'Aisha M.', country:'KE', amount:15000, code:'+254'},
+  {name:'John D.', country:'US', amount:5000, code:'+1'},
+  {name:'Fatima R.', country:'NG', amount:20000, code:'+234'},
+  {name:'Sara L.', country:'GB', amount:10000, code:'+44'},
+];
+
+let index = 0;
+function showPopup() {
+  setInterval(() => {
+    const person = namesList[index % namesList.length];
+    popup.innerHTML = `<div>📌 ${person.name} ${person.code} ✅ borrowed ${person.amount} ${person.country} ⏱ just now</div>`; 
+    index++;
+  }, 1000);
+}
+showPopup();
+
+applyBtn.addEventListener('click', () => {
+  if(!amount.value || !whatsapp.value || !countrySelect.value){
+    alert('Please fill all fields');
+    return;
+  }
+  processing.style.display = 'block';
+  setTimeout(() => {
+    const interestRate = duration.options[duration.selectedIndex].dataset.interest;
+    const serviceFee = 0.1 * parseFloat(amount.value);
+    const interest = (interestRate / 100) * parseFloat(amount.value);
+    const totalPay = parseFloat(amount.value) + interest;
+    const currency = countrySelect.options[countrySelect.selectedIndex].dataset.currency;
+    const country = countrySelect.value;
+    const message = `Hello Africash Loan Limited,
+Name: [Your Name]
+WhatsApp: ${whatsapp.value}
+Country: ${country}
+Amount: ${amount.value} ${currency}
+Duration: ${duration.value} days
+Service Fee: ${serviceFee.toFixed(2)} ${currency}
+Interest: ${interest.toFixed(2)} ${currency}
+Total to pay: ${totalPay.toFixed(2)} ${currency}
+Ref: PL-${Math.floor(Math.random()*100000)}`;
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/0100820805?text=${encoded}`, '_blank');
+    processing.style.display = 'none';
+  },1000);
+});
+</script>
+
+</body>
+</html>
