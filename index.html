@@ -6,8 +6,9 @@
 <title>Africash Loan Limited</title>
 <style>
 body { font-family: Arial, sans-serif; background:#f5f5f5; margin:0; padding:0; }
-header { text-align:center; padding:20px; font-size:36px; font-weight:bold; color:#2c3e50; font-family:'Segoe UI', sans-serif; letter-spacing:2px; position:relative; }
-header::after { content:"Africash Logo"; opacity:0.05; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:100px; font-weight:bold; color:#2c3e50; }
+header { text-align:center; padding:20px; position:relative; }
+header img { max-height:80px; display:block; margin:auto; }
+header div { text-align:center; font-size:28px; font-weight:bold; color:#2c3e50; margin-top:10px; }
 .container { max-width:900px; margin:auto; padding:20px; background:white; box-shadow:0 0 10px rgba(0,0,0,0.1); border-radius:8px; }
 label { display:block; margin-top:15px; font-weight:bold; }
 select, input, button { width:100%; padding:10px; margin-top:5px; border-radius:5px; border:1px solid #ccc; }
@@ -20,13 +21,16 @@ button:disabled { background:#ccc; cursor:not-allowed; }
 </head>
 <body>
 
-<header>Africash Loan Limited</header>
+<header>
+  <img src="logo.png" alt="Africash Loan Limited">
+  <div>Africash Loan Limited</div>
+</header>
 
 <div class="container">
 
 <p>Before applying, please send your identity documents to: <a href="mailto:africashloanlimited@gmail.com">africashloanlimited@gmail.com</a></p>
 
-<label for="uploadDocs">Upload Documents (ID, License, Passport):</label>
+<label for="uploadDocs">Upload Documents (ID both sides, Bank Statement, Selfie):</label>
 <input type="file" id="uploadDocs" multiple accept=".jpg,.png,.pdf">
 <button id="submitDocsBtn" style="display:none;">Submit Documents via Email</button>
 
@@ -37,7 +41,7 @@ button:disabled { background:#ccc; cursor:not-allowed; }
 <label for="countrySelect">Select your country:</label>
 <select id="countrySelect" disabled>
   <option value="">Select your country</option>
-  <!-- 55 African Countries with flag & code -->
+  <!-- 55 African + 10 International countries with flags and codes -->
   <option value="DZ" data-code="+213" data-currency="DZD" data-flag="🇩🇿">Algeria</option>
   <option value="AO" data-code="+244" data-currency="AOA" data-flag="🇦🇴">Angola</option>
   <option value="BJ" data-code="+229" data-currency="XOF" data-flag="🇧🇯">Benin</option>
@@ -107,7 +111,7 @@ button:disabled { background:#ccc; cursor:not-allowed; }
 </select>
 
 <label for="fullName">Full Name:</label>
-<input type="text" id="fullName" placeholder="Enter your full name">
+<input type="text" id="fullName" placeholder="Enter your full name" required>
 
 <label for="amount">Loan Amount:</label>
 <input type="number" id="amount" placeholder="Enter loan amount" min="1000">
@@ -217,4 +221,4 @@ Ref: PL-${Math.floor(Math.random()*100000)}`;
 </script>
 
 </body>
-    </html>
+  </html>
