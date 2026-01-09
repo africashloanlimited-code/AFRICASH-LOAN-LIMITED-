@@ -5,143 +5,197 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Africash Loan Limited</title>
 <style>
-  :root {
-    --primary-blue: #0d1b2a; /* Matches logo background */
-    --accent-gold: #c5a059;  /* Matches logo gold */
-    --light-bg: #f4f7f6;
-  }
+/* Logo Header */
+header {
+    background: #0d1b2a; /* Dark blue to match the logo background */
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 3px solid #c5a059; /* Gold accent line */
+}
 
-  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--light-bg); margin:0; padding:0; color: #333; }
-  
-  header { 
-    background: var(--primary-blue); 
-    padding: 30px 20px; 
-    text-align: center; 
-    border-bottom: 4px solid var(--accent-gold);
-  }
-  
-  header img { 
-    max-height: 180px; 
-    width: auto; 
-    display: block; 
-    margin: auto; 
-    filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
-  }
+header img {
+    max-height: 180px; /* Larger to make shield clear */
+    width: auto;
+    display: block;
+    margin: auto;
+    border-radius: 10px; /* Softens edges */
+}
 
-  .container { max-width: 600px; margin: 30px auto; padding: 25px; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 12px; }
-  
-  h2 { color: var(--primary-blue); text-align: center; margin-top: 0; }
-  p.instruction { font-size: 14px; color: #666; text-align: center; margin-bottom: 20px; }
-  
-  label { display: block; margin-top: 15px; font-weight: 600; font-size: 14px; color: var(--primary-blue); }
-  select, input, button { width: 100%; padding: 12px; margin-top: 5px; border-radius: 6px; border: 1px solid #ddd; box-sizing: border-box; }
-  
-  input:focus, select:focus { outline: none; border-color: var(--accent-gold); ring: 2px var(--accent-gold); }
-
-  button { 
-    background: var(--accent-gold); 
-    color: var(--primary-blue); 
-    padding: 15px; 
-    border: none; 
-    cursor: pointer; 
-    margin-top: 25px; 
-    font-size: 18px; 
+header div {
+    font-size: 28px;
     font-weight: bold;
-    text-transform: uppercase;
-    transition: 0.3s;
-  }
-  
-  button:hover:not(:disabled) { background: #e2bc75; transform: translateY(-2px); }
-  button:disabled { background: #ccc; cursor: not-allowed; color: #666; }
+    color: #ffffff; /* White text to contrast dark background */
+    margin-top: 10px;
+}
 
-  .popup { 
-    margin-top: 25px; 
-    background: #fff; 
-    padding: 12px; 
-    border-radius: 8px; 
-    border-left: 5px solid var(--accent-gold);
-    font-size: 13px; 
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
-  }
+/* Page background */
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
 
-  .processing { display: none; text-align: center; margin-top: 20px; font-weight: bold; color: #e67e22; }
-  
-  .email-link { color: #2980b9; font-weight: bold; text-decoration: none; }
-  .checkbox-group { display: flex; align-items: center; gap: 10px; margin-top: 15px; background: #f9f9f9; padding: 10px; border-radius: 5px; }
-  .checkbox-group input { width: auto; margin: 0; }
+/* Container */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+/* Form elements */
+label { display: block; margin-top: 15px; font-weight: bold; }
+select, input, button { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border:1px solid #ccc; font-size:16px; }
+
+/* Buttons with gold style */
+button {
+    background: #c5a059; 
+    color: #0d1b2a; 
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+button:hover { background: #e2bc75; }
+button:disabled { background:#ccc; cursor:not-allowed; }
+
+/* Popup for recent borrowers */
+.popup { margin-top:20px; background:#ecf0f1; padding:10px; border-radius:5px; height:160px; overflow-y:auto; font-size:14px; }
+
+/* Processing message */
+.processing { display:none; text-align:center; margin-top:20px; font-weight:bold; color:#e67e22; }
 </style>
 </head>
 <body>
 
 <header>
-  <img src="1542.jpg" alt="Africash Loan Limited Logo">
+  <img src="logo.png" alt="Africash Loan Limited Logo">
+  <div>Africash Loan Limited</div>
 </header>
 
 <div class="container">
-  <h2>Loan Application</h2>
-  <p class="instruction">Please send your ID (both sides), Bank Statement, and a Selfie to: <br>
-    <a href="mailto:africashloanlimited@gmail.com" class="email-link">africashloanlimited@gmail.com</a>
-  </p>
 
-  <label for="uploadDocs">Step 1: Select Documents</label>
-  <input type="file" id="uploadDocs" multiple accept=".jpg,.png,.pdf">
-  
-  <button id="submitDocsBtn" style="display:none; background: var(--primary-blue); color: white; margin-top: 10px;">
-    Click here to Email Documents
-  </button>
+<p>Before applying, please send your identity documents to: <a href="mailto:africashloanlimited@gmail.com">africashloanlimited@gmail.com</a></p>
 
-  <div class="checkbox-group">
-    <input type="checkbox" id="confirmDocs" disabled> 
-    <label for="confirmDocs" style="margin:0;">I have sent my documents via email</label>
-  </div>
+<label for="uploadDocs">Upload Documents (ID both sides, Bank Statement, Selfie):</label>
+<input type="file" id="uploadDocs" multiple accept=".jpg,.png,.pdf">
+<button id="submitDocsBtn" style="display:none;">Submit Documents via Email</button>
 
-  <hr style="margin: 25px 0; border: 0; border-top: 1px solid #eee;">
+<label>
+  <input type="checkbox" id="confirmDocs" disabled> I have sent my documents
+</label>
 
-  <label for="countrySelect">Select Country</label>
-  <select id="countrySelect" disabled>
-    <option value="">-- Choose Country --</option>
-    <option value="KE" data-code="+254" data-currency="KES">Kenya 🇰🇪</option>
-    <option value="NG" data-code="+234" data-currency="NGN">Nigeria 🇳🇬</option>
-    <option value="TZ" data-code="+255" data-currency="TZS">Tanzania 🇹🇿</option>
-    <option value="GH" data-code="+233" data-currency="GHS">Ghana 🇬🇭</option>
-    <option value="ZA" data-code="+27" data-currency="ZAR">South Africa 🇿🇦</option>
-    <option value="UG" data-code="+256" data-currency="UGX">Uganda 🇺🇬</option>
-    <option value="RW" data-code="+250" data-currency="RWF">Rwanda 🇷🇼</option>
-    <option value="US" data-code="+1" data-currency="USD">United States 🇺🇸</option>
-    <option value="GB" data-code="+44" data-currency="GBP">United Kingdom 🇬🇧</option>
-    </select>
+<label for="countrySelect">Select your country:</label>
+<select id="countrySelect" disabled>
+  <option value="">Select your country</option>
 
-  <label for="fullName">Full Name</label>
-  <input type="text" id="fullName" placeholder="As it appears on ID">
+  <!-- 55 African Countries -->
+  <option value="DZ" data-code="+213" data-currency="DZD">🇩🇿 Algeria</option>
+  <option value="AO" data-code="+244" data-currency="AOA">🇦🇴 Angola</option>
+  <option value="BJ" data-code="+229" data-currency="XOF">🇧🇯 Benin</option>
+  <option value="BW" data-code="+267" data-currency="BWP">🇧🇼 Botswana</option>
+  <option value="BF" data-code="+226" data-currency="XOF">🇧🇫 Burkina Faso</option>
+  <option value="BI" data-code="+257" data-currency="BIF">🇧🇮 Burundi</option>
+  <option value="CM" data-code="+237" data-currency="XAF">🇨🇲 Cameroon</option>
+  <option value="CV" data-code="+238" data-currency="CVE">🇨🇻 Cape Verde</option>
+  <option value="CF" data-code="+236" data-currency="XAF">🇨🇫 Central African Republic</option>
+  <option value="TD" data-code="+235" data-currency="XAF">🇹🇩 Chad</option>
+  <option value="KM" data-code="+269" data-currency="KMF">🇰🇲 Comoros</option>
+  <option value="CD" data-code="+243" data-currency="CDF">🇨🇩 Congo (DRC)</option>
+  <option value="CG" data-code="+242" data-currency="XAF">🇨🇬 Congo (Republic)</option>
+  <option value="CI" data-code="+225" data-currency="XOF">🇨🇮 Côte d’Ivoire</option>
+  <option value="DJ" data-code="+253" data-currency="DJF">🇩🇯 Djibouti</option>
+  <option value="EG" data-code="+20" data-currency="EGP">🇪🇬 Egypt</option>
+  <option value="GQ" data-code="+240" data-currency="XAF">🇬🇶 Equatorial Guinea</option>
+  <option value="ER" data-code="+291" data-currency="ERN">🇪🇷 Eritrea</option>
+  <option value="SZ" data-code="+268" data-currency="SZL">🇸🇿 Eswatini</option>
+  <option value="ET" data-code="+251" data-currency="ETB">🇪🇹 Ethiopia</option>
+  <option value="GA" data-code="+241" data-currency="XAF">🇬🇦 Gabon</option>
+  <option value="GM" data-code="+220" data-currency="GMD">🇬🇲 Gambia</option>
+  <option value="GH" data-code="+233" data-currency="GHS">🇬🇭 Ghana</option>
+  <option value="GN" data-code="+224" data-currency="GNF">🇬🇳 Guinea</option>
+  <option value="GW" data-code="+245" data-currency="XOF">🇬🇼 Guinea-Bissau</option>
+  <option value="KE" data-code="+254" data-currency="KES">🇰🇪 Kenya</option>
+  <option value="LS" data-code="+266" data-currency="LSL">🇱🇸 Lesotho</option>
+  <option value="LR" data-code="+231" data-currency="LRD">🇱🇷 Liberia</option>
+  <option value="LY" data-code="+218" data-currency="LYD">🇱🇾 Libya</option>
+  <option value="MG" data-code="+261" data-currency="MGA">🇲🇬 Madagascar</option>
+  <option value="MW" data-code="+265" data-currency="MWK">🇲🇼 Malawi</option>
+  <option value="ML" data-code="+223" data-currency="XOF">🇲🇱 Mali</option>
+  <option value="MR" data-code="+222" data-currency="MRU">🇲🇷 Mauritania</option>
+  <option value="MU" data-code="+230" data-currency="MUR">🇲🇺 Mauritius</option>
+  <option value="MA" data-code="+212" data-currency="MAD">🇲🇦 Morocco</option>
+  <option value="MZ" data-code="+258" data-currency="MZN">🇲🇿 Mozambique</option>
+  <option value="NA" data-code="+264" data-currency="NAD">🇳🇦 Namibia</option>
+  <option value="NE" data-code="+227" data-currency="XOF">🇳🇪 Niger</option>
+  <option value="NG" data-code="+234" data-currency="NGN">🇳🇬 Nigeria</option>
+  <option value="RW" data-code="+250" data-currency="RWF">🇷🇼 Rwanda</option>
+  <option value="ST" data-code="+239" data-currency="STN">🇸🇹 São Tomé & Príncipe</option>
+  <option value="SN" data-code="+221" data-currency="XOF">🇸🇳 Senegal</option>
+  <option value="SC" data-code="+248" data-currency="SCR">🇸🇨 Seychelles</option>
+  <option value="SL" data-code="+232" data-currency="SLL">🇸🇱 Sierra Leone</option>
+  <option value="SO" data-code="+252" data-currency="SOS">🇸🇴 Somalia</option>
+  <option value="ZA" data-code="+27" data-currency="ZAR">🇿🇦 South Africa</option>
+  <option value="SS" data-code="+211" data-currency="SSP">🇸🇸 South Sudan</option>
+  <option value="SD" data-code="+249" data-currency="SDG">🇸🇩 Sudan</option>
+  <option value="TZ" data-code="+255" data-currency="TZS">🇹🇿 Tanzania</option>
+  <option value="TG" data-code="+228" data-currency="XOF">🇹🇬 Togo</option>
+  <option value="TN" data-code="+216" data-currency="TND">🇹🇳 Tunisia</option>
+  <option value="UG" data-code="+256" data-currency="UGX">🇺🇬 Uganda</option>
+  <option value="ZM" data-code="+260" data-currency="ZMW">🇿🇲 Zambia</option>
+  <option value="ZW" data-code="+263" data-currency="ZWL">🇿🇼 Zimbabwe</option>
 
-  <label for="amount">Loan Amount</label>
-  <input type="number" id="amount" placeholder="Enter amount">
+  <!-- 10 International -->
+  <option value="US" data-code="+1" data-currency="USD">🇺🇸 United States</option>
+  <option value="GB" data-code="+44" data-currency="GBP">🇬🇧 United Kingdom</option>
+  <option value="CA" data-code="+1" data-currency="CAD">🇨🇦 Canada</option>
+  <option value="AU" data-code="+61" data-currency="AUD">🇦🇺 Australia</option>
+  <option value="DE" data-code="+49" data-currency="EUR">🇩🇪 Germany</option>
+  <option value="FR" data-code="+33" data-currency="EUR">🇫🇷 France</option>
+  <option value="JP" data-code="+81" data-currency="JPY">🇯🇵 Japan</option>
+  <option value="CN" data-code="+86" data-currency="CNY">🇨🇳 China</option>
+  <option value="IN" data-code="+91" data-currency="INR">🇮🇳 India</option>
+  <option value="QA" data-code="+974" data-currency="QAR">🇶🇦 Qatar</option>
+</select>
 
-  <label for="duration">Loan Duration</label>
-  <select id="duration">
-    <option value="30" data-interest="15">30 days (15% Interest)</option>
-    <option value="60" data-interest="19">60 days (19% Interest)</option>
-    <option value="90" data-interest="25">90 days (25% Interest)</option>
-  </select>
+<label for="fullName">Full Name:</label>
+<input type="text" id="fullName" placeholder="Enter your full name" required>
 
-  <label for="whatsapp">WhatsApp Number</label>
-  <input type="text" id="whatsapp" placeholder="e.g. +254...">
+<label for="amount">Loan Amount:</label>
+<input type="number" id="amount" placeholder="Enter loan amount" min="1000">
 
-  <button id="applyBtn" disabled>Apply via WhatsApp</button>
-  
-  <div class="processing" id="processing">Verifying details...</div>
-  
-  <div class="popup" id="popup">
-    Waiting for latest application updates...
-  </div>
-</div>
+<label for="durationType">Loan Duration Type:</label>
+<select id="durationType">
+  <option value="">Select Type</option>
+  <option value="monthly">Monthly (3% / month)</option>
+  <option value="yearly">Yearly (9% / year)</option>
+</select>
+
+<label for="durationValue">Duration:</label>
+<select id="durationValue" disabled>
+  <option value="">Select duration</option>
+</select>
+
+<label for="whatsapp">WhatsApp Number:</label>
+<input type="text" id="whatsapp" placeholder="WhatsApp number">
+
+<button id="applyBtn" disabled>Apply via WhatsApp</button>
+<div class="processing" id="processing">Processing, please wait...</div>
+<div class="popup" id="popup"></div>
 
 <script>
+// Elements
 const applyBtn = document.getElementById('applyBtn');
 const processing = document.getElementById('processing');
 const popup = document.getElementById('popup');
 const countrySelect = document.getElementById('countrySelect');
-const duration = document.getElementById('duration');
+const durationType = document.getElementById('durationType');
+const durationValue = document.getElementById('durationValue');
 const amount = document.getElementById('amount');
 const fullName = document.getElementById('fullName');
 const whatsapp = document.getElementById('whatsapp');
@@ -149,84 +203,92 @@ const uploadDocs = document.getElementById('uploadDocs');
 const submitDocsBtn = document.getElementById('submitDocsBtn');
 const confirmDocs = document.getElementById('confirmDocs');
 
-// Workflow Logic
+// Document upload logic
 uploadDocs.addEventListener('change', () => {
   submitDocsBtn.style.display = uploadDocs.files.length > 0 ? 'block' : 'none';
+  confirmDocs.checked = false;
+  confirmDocs.disabled = true;
+  applyBtn.disabled = true;
 });
 
+// Submit docs via email
 submitDocsBtn.addEventListener('click', () => {
-  let attachmentNames = Array.from(uploadDocs.files).map(f=>f.name).join(', ');
-  let mailtoLink = `mailto:africashloanlimited@gmail.com?subject=Loan Application Documents&body=Full Name: ${fullName.value}%0D%0AAttached Documents: ${attachmentNames}`;
-  window.location.href = mailtoLink;
+  if (!uploadDocs.files.length) { alert("Select documents first"); return; }
+  let names = Array.from(uploadDocs.files).map(f => f.name).join(', ');
+  let mailto = `mailto:africashloanlimited@gmail.com?subject=Loan Docs Submission&body=Attached: ${names}`;
+  window.location.href = mailto;
   confirmDocs.disabled = false;
 });
 
+// Enable fields after confirming docs
 confirmDocs.addEventListener('change', () => {
   countrySelect.disabled = !confirmDocs.checked;
+  durationType.disabled = !confirmDocs.checked;
   applyBtn.disabled = !confirmDocs.checked;
 });
 
-countrySelect.addEventListener('change', () => {
-  if(countrySelect.value){
-    whatsapp.value = countrySelect.options[countrySelect.selectedIndex].dataset.code;
+// Populate duration options
+durationType.addEventListener('change', () => {
+  durationValue.disabled = false;
+  durationValue.innerHTML = '<option value="">Select duration</option>';
+  if (durationType.value === 'monthly') {
+    for (let i = 1; i <= 12; i++) durationValue.innerHTML += `<option value="${i}" data-interest="3">${i} month(s)</option>`;
+  } else if (durationType.value === 'yearly') {
+    for (let i = 1; i <= 10; i++) durationValue.innerHTML += `<option value="${i}" data-interest="9">${i} year(s)</option>`;
   }
 });
 
-// Recent Activity Feed
+// Auto-fill WhatsApp code
+countrySelect.addEventListener('change', () => {
+  whatsapp.value = countrySelect.options[countrySelect.selectedIndex].dataset.code;
+});
+
+// Popup recent borrowers
 const namesList = [
-  {name:'John O.', country:'KE', amount:45000, code:'+254'},
-  {name:'Blessing E.', country:'NG', amount:120000, code:'+234'},
-  {name:'Samuel T.', country:'TZ', amount:500000, code:'+255'},
-  {name:'Grace M.', country:'GH', amount:2500, code:'+233'},
-  {name:'David K.', country:'UG', amount:150000, code:'+256'}
+  {name:'Mohamed K.', country:'TZ', amount:300000, code:'+255'},
+  {name:'Aisha M.', country:'KE', amount:15000, code:'+254'},
+  {name:'John D.', country:'US', amount:5000, code:'+1'},
+  {name:'Fatima R.', country:'NG', amount:20000, code:'+234'},
+  {name:'Sara L.', country:'GB', amount:10000, code:'+44'},
 ];
+let idx = 0;
+setInterval(() => {
+  const p = namesList[idx % namesList.length];
+  popup.innerHTML = `<div>📌 ${p.name} ${p.code} ${p.country} borrowed ${p.amount} ⏱ just now</div>`;
+  idx++;
+},1000);
 
-let index = 0;
-function showPopup() {
-  setInterval(() => {
-    const person = namesList[index % namesList.length];
-    const curr = countrySelect.options[countrySelect.selectedIndex].dataset.currency || "units";
-    popup.innerHTML = `<strong>📌 Recent Approval:</strong> ${person.name} (${person.code}) from ${person.country} just received ${person.amount.toLocaleString()} ${curr} ✅`; 
-    index++;
-  }, 4000);
-}
-showPopup();
-
-// WhatsApp Application
+// Apply via WhatsApp
 applyBtn.addEventListener('click', () => {
-  if(!fullName.value || !amount.value || !whatsapp.value){
-    alert('Please fill in all fields correctly.');
+  if (!fullName.value || !amount.value || !countrySelect.value || !whatsapp.value || !durationValue.value) {
+    alert("Please complete all fields");
     return;
   }
-  
   processing.style.display='block';
-  
-  setTimeout(()=>{
-    const interestRate = duration.options[duration.selectedIndex].dataset.interest;
-    const amtVal = parseFloat(amount.value);
-    const interest = (interestRate/100) * amtVal;
-    const serviceFee = (amtVal < 10000 ? 0.10 : amtVal < 50000 ? 0.08 : 0.05) * amtVal;
-    const totalPay = amtVal + interest + serviceFee;
+  setTimeout(() => {
+    const interestRate = parseFloat(durationValue.options[durationValue.selectedIndex].dataset.interest);
+    const dVal = parseFloat(durationValue.value);
+    const interest = dVal * (interestRate/100) * parseFloat(amount.value);
+    const serviceFee = (parseFloat(amount.value)<10000?0.10:parseFloat(amount.value)<50000?0.08:parseFloat(amount.value)<100000?0.06:0.05)*parseFloat(amount.value);
+    const totalPay = parseFloat(amount.value)+interest+serviceFee;
+    const country = countrySelect.value;
     const currency = countrySelect.options[countrySelect.selectedIndex].dataset.currency;
-    
-    const message = `Hello Africash Loan Limited,
-I am applying for a loan.
+    const msg = `Hello Africash Loan Limited,
 Name: ${fullName.value}
-Country: ${countrySelect.value}
 WhatsApp: ${whatsapp.value}
-Amount: ${amtVal} ${currency}
-Duration: ${duration.value} days
----
-Fees: ${serviceFee.toFixed(2)} ${currency}
+Country: ${country}
+Amount: ${amount.value} ${currency}
+Duration: ${durationValue.value} ${durationType.value}
+Service Fee: ${serviceFee.toFixed(2)} ${currency}
 Interest: ${interest.toFixed(2)} ${currency}
-Total Payable: ${totalPay.toFixed(2)} ${currency}
-Ref No: AF-${Math.floor(Math.random()*90000) + 10000}`;
+Total to pay: ${totalPay.toFixed(2)} ${currency}
+Ref: PL-${Math.floor(Math.random()*100000)}`;
 
-    window.open(`https://wa.me/254100820805?text=${encodeURIComponent(message)}`,'_blank');
+    window.open(`https://wa.me/254100820805?text=${encodeURIComponent(msg)}`, '_blank');
     processing.style.display='none';
-  }, 1500);
+  }, 1000);
 });
 </script>
 
 </body>
-</html>
+  </html>
