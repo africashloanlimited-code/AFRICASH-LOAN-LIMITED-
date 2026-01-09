@@ -1,293 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Africash Loan Limited</title>
-<style>
-/* Logo Header */
-header {
-    background: #0d1b2a; /* Dark blue to match the logo background */
-    padding: 30px 20px;
-    text-align: center;
-    border-bottom: 3px solid #c5a059; /* Gold accent line */
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFRICASH LOAN LIMITED | Africa's Trusted Lender</title>
+    <style>
+        :root {
+            --primary-navy: #1a2a3a;
+            --accent-green: #27ae60;
+            --accent-hover: #2ecc71;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+        }
 
-header img {
-    max-height: 180px; /* Larger to make shield clear */
-    width: auto;
-    display: block;
-    margin: auto;
-    border-radius: 10px; /* Softens edges */
-}
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-light);
+            color: #333;
+            line-height: 1.6;
+        }
 
-header div {
-    font-size: 28px;
-    font-weight: bold;
-    color: #ffffff; /* White text to contrast dark background */
-    margin-top: 10px;
-}
+        /* HEADER */
+        header {
+            background: var(--primary-navy);
+            padding: 30px 15px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-green);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+            color: var(--white);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
 
-/* Page background */
-body {
-    font-family: Arial, sans-serif;
-    background: #f0f2f5;
-    margin: 0;
-    padding: 0;
-}
+        /* ACTIONS BAR */
+        .user-actions {
+            max-width: 1000px;
+            margin: 20px auto 0;
+            display: flex;
+            gap: 15px;
+            padding: 0 15px;
+        }
+        .action-btn {
+            background: var(--primary-navy);
+            color: var(--white);
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px;
+            flex: 1;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .action-btn:hover { background: #2c3e50; }
 
-/* Container */
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-}
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1000px;
+            margin: 20px auto 60px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
 
-/* Form elements */
-label { display: block; margin-top: 15px; font-weight: bold; }
-select, input, button { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border:1px solid #ccc; font-size:16px; }
+        h2 { color: var(--primary-navy); margin-top: 30px; border-left: 5px solid var(--accent-green); padding-left: 15px; }
 
-/* Buttons with gold style */
-button {
-    background: #c5a059; 
-    color: #0d1b2a; 
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background 0.3s;
-}
+        /* FORM ELEMENTS */
+        .form-group { margin-bottom: 20px; }
+        label { font-weight: 700; display: block; margin-bottom: 8px; color: #444; }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+        input:focus { border-color: var(--accent-green); outline: none; box-shadow: 0 0 5px rgba(39,174,96,0.3); }
 
-button:hover { background: #e2bc75; }
-button:disabled { background:#ccc; cursor:not-allowed; }
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .btn-whatsapp { background: #25D366; color: white; margin-top: 15px; }
+        .btn-email { background: var(--accent-green); color: white; }
+        .btn-submit:hover { opacity: 0.9; transform: translateY(-1px); }
 
-/* Popup for recent borrowers */
-.popup { margin-top:20px; background:#ecf0f1; padding:10px; border-radius:5px; height:160px; overflow-y:auto; font-size:14px; }
+        /* MODALS */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(3px);
+        }
+        .modal-content {
+            background: var(--white);
+            margin: 10% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            border-radius: 15px;
+            position: relative;
+            border-top: 6px solid var(--accent-green);
+            animation: slideDown 0.3s ease-out;
+        }
+        @keyframes slideDown { from {transform: translateY(-50px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+        
+        .close { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #888; }
+        .manager-card { background: #f9f9f9; padding: 20px; border-radius: 10px; text-align: center; border: 1px solid #eee; }
+        .manager-card h3 { margin-top: 0; color: var(--accent-green); }
+        .call-link { display: block; margin-top: 15px; color: var(--primary-navy); font-weight: bold; text-decoration: none; font-size: 18px; border: 2px solid var(--accent-green); padding: 10px; border-radius: 8px; }
 
-/* Processing message */
-.processing { display:none; text-align:center; margin-top:20px; font-weight:bold; color:#e67e22; }
-</style>
+        /* FOOTER */
+        footer { background: var(--primary-navy); color: var(--white); padding: 50px 20px; text-align: center; }
+        footer h3 { color: var(--accent-green); margin-bottom: 20px; }
+        .copyright { margin-top: 30px; font-size: 13px; opacity: 0.7; }
+    </style>
 </head>
 <body>
 
 <header>
-  <img src="logo.png" alt="Africash Loan Limited Logo">
-  <div>Africash Loan Limited</div>
+    <h1>AFRICASH LOAN LIMITED</h1>
 </header>
 
+<div class="user-actions">
+    <button class="action-btn" onclick="toggleModal('dashboardModal')">👤 Access Dashboard</button>
+    <button class="action-btn" onclick="toggleModal('supportModal')">🎧 Support Center</button>
+</div>
+
 <div class="container">
+    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-green); margin-bottom: 25px; font-size: 14px;">
+        <strong>PRE-REQUISITE:</strong> To expedite your application, please email your ID (both sides), 3-month bank statement, and a clear selfie to:
+        <br><a href="mailto:africashloanlimited@gmail.com" style="color: var(--accent-green); font-weight: bold; font-size: 16px;">africashloanlimited@gmail.com</a>
+    </div>
 
-<p>Before applying, please send your identity documents to: <a href="mailto:africashloanlimited@gmail.com">africashloanlimited@gmail.com</a></p>
+    <form id="loanForm">
+        <div class="form-group">
+            <label>Country of Residence</label>
+            <select id="country" required>
+                <option value="">Select your country</option>
+                <optgroup label="All African Countries">
+                    <option>🇩🇿 Algeria</option><option>🇦🇴 Angola</option><option>🇧🇯 Benin</option><option>🇧🇼 Botswana</option><option>🇧🇫 Burkina Faso</option><option>🇧🇮 Burundi</option><option>🇨🇲 Cameroon</option><option>🇨🇻 Cape Verde</option><option>🇨🇫 Central African Rep</option><option>🇹🇩 Chad</option><option>🇰🇲 Comoros</option><option>🇨🇬 Congo</option><option>🇨🇩 DR Congo</option><option>🇩🇯 Djibouti</option><option>🇪🇬 Egypt</option><option>🇬🇶 Equatorial Guinea</option><option>🇪🇷 Eritrea</option><option>🇸🇿 Eswatini</option><option>🇪🇹 Ethiopia</option><option>🇬🇦 Gabon</option><option>🇬🇲 Gambia</option><option>🇬🇭 Ghana</option><option>🇬🇳 Guinea</option><option>🇬🇼 Guinea-Bissau</option><option>🇨🇮 Ivory Coast</option><option>🇰🇪 Kenya</option><option>🇱🇸 Lesotho</option><option>🇱🇷 Liberia</option><option>🇱🇾 Libya</option><option>🇲🇬 Madagascar</option><option>🇲🇼 Malawi</option><option>🇲🇱 Mali</option><option>🇲🇷 Mauritania</option><option>🇲🇺 Mauritius</option><option>🇲🇦 Morocco</option><option>🇲🇿 Mozambique</option><option>🇳🇦 Namibia</option><option>🇳🇪 Niger</option><option>🇳🇬 Nigeria</option><option>🇷🇼 Rwanda</option><option>🇸🇹 Sao Tome</option><option>🇸🇳 Senegal</option><option>🇸🇨 Seychelles</option><option>🇸🇱 Sierra Leone</option><option>🇸🇴 Somalia</option><option>🇿🇦 South Africa</option><option>🇸🇸 South Sudan</option><option>🇸🇩 Sudan</option><option>🇹🇿 Tanzania</option><option>🇹🇬 Togo</option><option>🇹🇳 Tunisia</option><option>🇺🇬 Uganda</option><option>🇪🇭 Western Sahara</option><option>🇿🇲 Zambia</option><option>🇿🇼 Zimbabwe</option>
+                </optgroup>
+                <optgroup label="International">
+                    <option>🇺🇸 United States</option><option>🇬🇧 United Kingdom</option><option>🇨🇦 Canada</option><option>🇦🇪 UAE</option><option>🇶🇦 Qatar</option>
+                </optgroup>
+            </select>
+        </div>
 
-<label for="uploadDocs">Upload Documents (ID both sides, Bank Statement, Selfie):</label>
-<input type="file" id="uploadDocs" multiple accept=".jpg,.png,.pdf">
-<button id="submitDocsBtn" style="display:none;">Submit Documents via Email</button>
+        <div class="form-group">
+            <label>Legal Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter name as per ID" required>
+        </div>
 
-<label>
-  <input type="checkbox" id="confirmDocs" disabled> I have sent my documents
-</label>
+        <div class="form-group">
+            <label>Requested Loan Amount</label>
+            <input type="number" id="loanAmount" placeholder="Amount in local currency" required>
+        </div>
 
-<label for="countrySelect">Select your country:</label>
-<select id="countrySelect" disabled>
-  <option value="">Select your country</option>
+        <div class="form-group">
+            <label>Repayment Plan</label>
+            <select id="loanDuration">
+                <option value="Monthly – 3%">Monthly Repayment (3% Interest Rate)</option>
+                <option value="Yearly – 9%">Yearly Repayment (9% Interest Rate)</option>
+            </select>
+        </div>
 
-  <!-- 55 African Countries -->
-  <option value="DZ" data-code="+213" data-currency="DZD">🇩🇿 Algeria</option>
-  <option value="AO" data-code="+244" data-currency="AOA">🇦🇴 Angola</option>
-  <option value="BJ" data-code="+229" data-currency="XOF">🇧🇯 Benin</option>
-  <option value="BW" data-code="+267" data-currency="BWP">🇧🇼 Botswana</option>
-  <option value="BF" data-code="+226" data-currency="XOF">🇧🇫 Burkina Faso</option>
-  <option value="BI" data-code="+257" data-currency="BIF">🇧🇮 Burundi</option>
-  <option value="CM" data-code="+237" data-currency="XAF">🇨🇲 Cameroon</option>
-  <option value="CV" data-code="+238" data-currency="CVE">🇨🇻 Cape Verde</option>
-  <option value="CF" data-code="+236" data-currency="XAF">🇨🇫 Central African Republic</option>
-  <option value="TD" data-code="+235" data-currency="XAF">🇹🇩 Chad</option>
-  <option value="KM" data-code="+269" data-currency="KMF">🇰🇲 Comoros</option>
-  <option value="CD" data-code="+243" data-currency="CDF">🇨🇩 Congo (DRC)</option>
-  <option value="CG" data-code="+242" data-currency="XAF">🇨🇬 Congo (Republic)</option>
-  <option value="CI" data-code="+225" data-currency="XOF">🇨🇮 Côte d’Ivoire</option>
-  <option value="DJ" data-code="+253" data-currency="DJF">🇩🇯 Djibouti</option>
-  <option value="EG" data-code="+20" data-currency="EGP">🇪🇬 Egypt</option>
-  <option value="GQ" data-code="+240" data-currency="XAF">🇬🇶 Equatorial Guinea</option>
-  <option value="ER" data-code="+291" data-currency="ERN">🇪🇷 Eritrea</option>
-  <option value="SZ" data-code="+268" data-currency="SZL">🇸🇿 Eswatini</option>
-  <option value="ET" data-code="+251" data-currency="ETB">🇪🇹 Ethiopia</option>
-  <option value="GA" data-code="+241" data-currency="XAF">🇬🇦 Gabon</option>
-  <option value="GM" data-code="+220" data-currency="GMD">🇬🇲 Gambia</option>
-  <option value="GH" data-code="+233" data-currency="GHS">🇬🇭 Ghana</option>
-  <option value="GN" data-code="+224" data-currency="GNF">🇬🇳 Guinea</option>
-  <option value="GW" data-code="+245" data-currency="XOF">🇬🇼 Guinea-Bissau</option>
-  <option value="KE" data-code="+254" data-currency="KES">🇰🇪 Kenya</option>
-  <option value="LS" data-code="+266" data-currency="LSL">🇱🇸 Lesotho</option>
-  <option value="LR" data-code="+231" data-currency="LRD">🇱🇷 Liberia</option>
-  <option value="LY" data-code="+218" data-currency="LYD">🇱🇾 Libya</option>
-  <option value="MG" data-code="+261" data-currency="MGA">🇲🇬 Madagascar</option>
-  <option value="MW" data-code="+265" data-currency="MWK">🇲🇼 Malawi</option>
-  <option value="ML" data-code="+223" data-currency="XOF">🇲🇱 Mali</option>
-  <option value="MR" data-code="+222" data-currency="MRU">🇲🇷 Mauritania</option>
-  <option value="MU" data-code="+230" data-currency="MUR">🇲🇺 Mauritius</option>
-  <option value="MA" data-code="+212" data-currency="MAD">🇲🇦 Morocco</option>
-  <option value="MZ" data-code="+258" data-currency="MZN">🇲🇿 Mozambique</option>
-  <option value="NA" data-code="+264" data-currency="NAD">🇳🇦 Namibia</option>
-  <option value="NE" data-code="+227" data-currency="XOF">🇳🇪 Niger</option>
-  <option value="NG" data-code="+234" data-currency="NGN">🇳🇬 Nigeria</option>
-  <option value="RW" data-code="+250" data-currency="RWF">🇷🇼 Rwanda</option>
-  <option value="ST" data-code="+239" data-currency="STN">🇸🇹 São Tomé & Príncipe</option>
-  <option value="SN" data-code="+221" data-currency="XOF">🇸🇳 Senegal</option>
-  <option value="SC" data-code="+248" data-currency="SCR">🇸🇨 Seychelles</option>
-  <option value="SL" data-code="+232" data-currency="SLL">🇸🇱 Sierra Leone</option>
-  <option value="SO" data-code="+252" data-currency="SOS">🇸🇴 Somalia</option>
-  <option value="ZA" data-code="+27" data-currency="ZAR">🇿🇦 South Africa</option>
-  <option value="SS" data-code="+211" data-currency="SSP">🇸🇸 South Sudan</option>
-  <option value="SD" data-code="+249" data-currency="SDG">🇸🇩 Sudan</option>
-  <option value="TZ" data-code="+255" data-currency="TZS">🇹🇿 Tanzania</option>
-  <option value="TG" data-code="+228" data-currency="XOF">🇹🇬 Togo</option>
-  <option value="TN" data-code="+216" data-currency="TND">🇹🇳 Tunisia</option>
-  <option value="UG" data-code="+256" data-currency="UGX">🇺🇬 Uganda</option>
-  <option value="ZM" data-code="+260" data-currency="ZMW">🇿🇲 Zambia</option>
-  <option value="ZW" data-code="+263" data-currency="ZWL">🇿🇼 Zimbabwe</option>
+        <div class="form-group">
+            <label>WhatsApp Contact Number</label>
+            <input type="text" id="whatsapp" placeholder="e.g. +254..." required>
+        </div>
 
-  <!-- 10 International -->
-  <option value="US" data-code="+1" data-currency="USD">🇺🇸 United States</option>
-  <option value="GB" data-code="+44" data-currency="GBP">🇬🇧 United Kingdom</option>
-  <option value="CA" data-code="+1" data-currency="CAD">🇨🇦 Canada</option>
-  <option value="AU" data-code="+61" data-currency="AUD">🇦🇺 Australia</option>
-  <option value="DE" data-code="+49" data-currency="EUR">🇩🇪 Germany</option>
-  <option value="FR" data-code="+33" data-currency="EUR">🇫🇷 France</option>
-  <option value="JP" data-code="+81" data-currency="JPY">🇯🇵 Japan</option>
-  <option value="CN" data-code="+86" data-currency="CNY">🇨🇳 China</option>
-  <option value="IN" data-code="+91" data-currency="INR">🇮🇳 India</option>
-  <option value="QA" data-code="+974" data-currency="QAR">🇶🇦 Qatar</option>
-</select>
+        <button type="button" class="btn-submit btn-email" onclick="submitViaEmail()">SUBMIT FORM VIA EMAIL</button>
+        <button type="button" class="btn-submit btn-whatsapp" onclick="submitViaWhatsApp()">APPLY VIA WHATSAPP</button>
+    </form>
+</div>
 
-<label for="fullName">Full Name:</label>
-<input type="text" id="fullName" placeholder="Enter your full name" required>
+<div id="dashboardModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="toggleModal('dashboardModal')">&times;</span>
+        <h2>Client Dashboard</h2>
+        <div class="manager-card">
+            <p style="font-size: 14px; color: #666; margin-bottom: 5px;">Your Portfolio Manager</p>
+            <h3>SYLVIA UKIRU</h3>
+            <p><strong>Department:</strong> Verification & Lending</p>
+            <p><strong>Direct Line:</strong> +254 100 820 805</p>
+            <a href="tel:+254100820805" class="call-link">📞 Call Sylvia Ukiru</a>
+        </div>
+        <p style="font-size: 11px; text-align: center; margin-top: 20px; color: #999;">AFRICASH INTERNAL ID: AF-2026-X81</p>
+    </div>
+</div>
 
-<label for="amount">Loan Amount:</label>
-<input type="number" id="amount" placeholder="Enter loan amount" min="1000">
+<div id="supportModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="toggleModal('supportModal')">&times;</span>
+        <h2>Customer Support</h2>
+        <p>Describe your issue below for automatic submission.</p>
+        <div class="form-group">
+            <textarea id="supportIssue" rows="4" placeholder="How can we help you today?"></textarea>
+        </div>
+        <button class="btn-submit btn-email" onclick="submitSupport()">Send Ticket</button>
+    </div>
+</div>
 
-<label for="durationType">Loan Duration Type:</label>
-<select id="durationType">
-  <option value="">Select Type</option>
-  <option value="monthly">Monthly (3% / month)</option>
-  <option value="yearly">Yearly (9% / year)</option>
-</select>
-
-<label for="durationValue">Duration:</label>
-<select id="durationValue" disabled>
-  <option value="">Select duration</option>
-</select>
-
-<label for="whatsapp">WhatsApp Number:</label>
-<input type="text" id="whatsapp" placeholder="WhatsApp number">
-
-<button id="applyBtn" disabled>Apply via WhatsApp</button>
-<div class="processing" id="processing">Processing, please wait...</div>
-<div class="popup" id="popup"></div>
+<footer>
+    <h3>AFRICASH LOAN LIMITED</h3>
+    <p>P.O. Box 13314-00200, Nairobi, Kenya</p>
+    <p>Official Helpline: 020 33 49 198</p>
+    <p>Email: africashloanlimited@gmail.com</p>
+    <div class="copyright">Copyright © 2026 AFRICASH LOAN LIMITED. All Rights Reserved.</div>
+</footer>
 
 <script>
-// Elements
-const applyBtn = document.getElementById('applyBtn');
-const processing = document.getElementById('processing');
-const popup = document.getElementById('popup');
-const countrySelect = document.getElementById('countrySelect');
-const durationType = document.getElementById('durationType');
-const durationValue = document.getElementById('durationValue');
-const amount = document.getElementById('amount');
-const fullName = document.getElementById('fullName');
-const whatsapp = document.getElementById('whatsapp');
-const uploadDocs = document.getElementById('uploadDocs');
-const submitDocsBtn = document.getElementById('submitDocsBtn');
-const confirmDocs = document.getElementById('confirmDocs');
+    function toggleModal(id) {
+        const modal = document.getElementById(id);
+        modal.style.display = (modal.style.display === "block") ? "none" : "block";
+    }
 
-// Document upload logic
-uploadDocs.addEventListener('change', () => {
-  submitDocsBtn.style.display = uploadDocs.files.length > 0 ? 'block' : 'none';
-  confirmDocs.checked = false;
-  confirmDocs.disabled = true;
-  applyBtn.disabled = true;
-});
+    function submitViaEmail() {
+        const name = document.getElementById('fullName').value;
+        const amount = document.getElementById('loanAmount').value;
+        const duration = document.getElementById('loanDuration').value;
+        const country = document.getElementById('country').value;
+        const phone = document.getElementById('whatsapp').value;
 
-// Submit docs via email
-submitDocsBtn.addEventListener('click', () => {
-  if (!uploadDocs.files.length) { alert("Select documents first"); return; }
-  let names = Array.from(uploadDocs.files).map(f => f.name).join(', ');
-  let mailto = `mailto:africashloanlimited@gmail.com?subject=Loan Docs Submission&body=Attached: ${names}`;
-  window.location.href = mailto;
-  confirmDocs.disabled = false;
-});
+        if(!name || !amount || !country) { alert("Please complete all required fields."); return; }
 
-// Enable fields after confirming docs
-confirmDocs.addEventListener('change', () => {
-  countrySelect.disabled = !confirmDocs.checked;
-  durationType.disabled = !confirmDocs.checked;
-  applyBtn.disabled = !confirmDocs.checked;
-});
+        const subject = `AFRICASH APPLICATION: ${name} (${country})`;
+        const body = `Official Loan Application Details:\n\nClient Name: ${name}\nCountry: ${country}\nRequested Amount: ${amount}\nRepayment Plan: ${duration}\nWhatsApp Contact: ${phone}`;
+        
+        window.location.href = `mailto:africashloanlimited@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
 
-// Populate duration options
-durationType.addEventListener('change', () => {
-  durationValue.disabled = false;
-  durationValue.innerHTML = '<option value="">Select duration</option>';
-  if (durationType.value === 'monthly') {
-    for (let i = 1; i <= 12; i++) durationValue.innerHTML += `<option value="${i}" data-interest="3">${i} month(s)</option>`;
-  } else if (durationType.value === 'yearly') {
-    for (let i = 1; i <= 10; i++) durationValue.innerHTML += `<option value="${i}" data-interest="9">${i} year(s)</option>`;
-  }
-});
+    function submitViaWhatsApp() {
+        const name = document.getElementById('fullName').value;
+        const amount = document.getElementById('loanAmount').value;
+        if(!name || !amount) { alert("Please enter your name and amount first."); return; }
+        
+        const text = `Hello AFRICASH LOAN LIMITED, I am ${name}. I wish to apply for a loan of ${amount}. Please guide me on the requirements.`;
+        window.open(`https://wa.me/254101965027?text=${encodeURIComponent(text)}`, '_blank');
+    }
 
-// Auto-fill WhatsApp code
-countrySelect.addEventListener('change', () => {
-  whatsapp.value = countrySelect.options[countrySelect.selectedIndex].dataset.code;
-});
+    function submitSupport() {
+        const msg = document.getElementById('supportIssue').value;
+        if(!msg) { alert("Please provide details of your issue."); return; }
+        
+        const subject = "AFRICASH Support Ticket Request";
+        window.location.href = `mailto:africashloanlimited@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg)}`;
+        toggleModal('supportModal');
+    }
 
-// Popup recent borrowers
-const namesList = [
-  {name:'Mohamed K.', country:'TZ', amount:300000, code:'+255'},
-  {name:'Aisha M.', country:'KE', amount:15000, code:'+254'},
-  {name:'John D.', country:'US', amount:5000, code:'+1'},
-  {name:'Fatima R.', country:'NG', amount:20000, code:'+234'},
-  {name:'Sara L.', country:'GB', amount:10000, code:'+44'},
-];
-let idx = 0;
-setInterval(() => {
-  const p = namesList[idx % namesList.length];
-  popup.innerHTML = `<div>📌 ${p.name} ${p.code} ${p.country} borrowed ${p.amount} ⏱ just now</div>`;
-  idx++;
-},1000);
-
-// Apply via WhatsApp
-applyBtn.addEventListener('click', () => {
-  if (!fullName.value || !amount.value || !countrySelect.value || !whatsapp.value || !durationValue.value) {
-    alert("Please complete all fields");
-    return;
-  }
-  processing.style.display='block';
-  setTimeout(() => {
-    const interestRate = parseFloat(durationValue.options[durationValue.selectedIndex].dataset.interest);
-    const dVal = parseFloat(durationValue.value);
-    const interest = dVal * (interestRate/100) * parseFloat(amount.value);
-    const serviceFee = (parseFloat(amount.value)<10000?0.10:parseFloat(amount.value)<50000?0.08:parseFloat(amount.value)<100000?0.06:0.05)*parseFloat(amount.value);
-    const totalPay = parseFloat(amount.value)+interest+serviceFee;
-    const country = countrySelect.value;
-    const currency = countrySelect.options[countrySelect.selectedIndex].dataset.currency;
-    const msg = `Hello Africash Loan Limited,
-Name: ${fullName.value}
-WhatsApp: ${whatsapp.value}
-Country: ${country}
-Amount: ${amount.value} ${currency}
-Duration: ${durationValue.value} ${durationType.value}
-Service Fee: ${serviceFee.toFixed(2)} ${currency}
-Interest: ${interest.toFixed(2)} ${currency}
-Total to pay: ${totalPay.toFixed(2)} ${currency}
-Ref: PL-${Math.floor(Math.random()*100000)}`;
-
-    window.open(`https://wa.me/254100820805?text=${encodeURIComponent(msg)}`, '_blank');
-    processing.style.display='none';
-  }, 1000);
-});
+    window.onclick = function(event) {
+        if (event.target.className === "modal") { event.target.style.display = "none"; }
+    }
 </script>
 
 </body>
